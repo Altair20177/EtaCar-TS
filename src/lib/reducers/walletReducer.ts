@@ -1,9 +1,11 @@
+import { Crypt } from "../../types";
+
 const ADD_CRYPT_TO_WALLET = "ADD_CRYPT_TO_WALLET";
 const DELETE_CRYPT_FROM_WALLET = "DELETE_CRYPT_FROM_WALLET";
 
-let initialState = [];
+let initialState: Array<Crypt> = [];
 
-export const walletReducer = (state = initialState, action) => {
+export const walletReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ADD_CRYPT_TO_WALLET: {
       const same = state.filter((item) => item.id === action.payload.data.id);
@@ -21,9 +23,9 @@ export const walletReducer = (state = initialState, action) => {
     case DELETE_CRYPT_FROM_WALLET: {
       const workItem = state.find((item) => item.id === action.payload.data.id);
 
-      if (workItem.amount <= action.payload.data.amountToDelete) {
+      if (workItem && workItem.amount <= action.payload.data.amountToDelete) {
         return [...state.filter((item) => item.id !== action.payload.data.id)];
-      } else {
+      } else if (workItem) {
         let itemIndex = 0;
 
         const newState = [...state];
@@ -36,6 +38,7 @@ export const walletReducer = (state = initialState, action) => {
 
         return [...newState];
       }
+      break;
     }
     default:
       return state;
