@@ -1,0 +1,126 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal {
+    &-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        transition: linear 0.2s;
+        visibility: hidden;
+        opacity: 0;
+        z-index: 10;
+    }
+
+    &-content {
+        min-width: 610px;
+        width: 50%;
+        background-color: white;
+        border-radius: 15px;
+        margin: 0 auto;
+        margin-top: 150px;
+        transition: linear 0.2s;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+        border-bottom: 1px solid rgb(167, 167, 167);
+        padding: 15px 25px;
+    }
+
+    &__title {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    &__cross {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+    }
+
+    &-body {
+        padding: 30px 25px;
+    }
+
+    &__about {
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    &__input {
+        display: block;
+        height: 50px;
+        width: 80%;
+        border: 1px solid rgb(167, 167, 167);
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-size: 20px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    &__button {
+        display: block;
+        font-size: 20px;
+        padding: 15px 25px;
+        border: 1px solid rgb(167, 167, 167);
+        border-radius: 5px;
+        margin: 0 auto;
+        margin-top: 30px;
+        transition: 0.2s;
+
+        &:hover {
+            background-color: rgb(202, 200, 200);
+        }
+    }
+}
+
+.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+.rules {
+    text-align: center;
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+@media (max-width: 640px) {
+    .modal {
+        &-content {
+            min-width: 0;
+            width: 90%;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .modal {
+        &__title,
+        &__about {
+            font-size: 20px;
+        }
+    }
+}

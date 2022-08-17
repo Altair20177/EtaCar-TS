@@ -1,0 +1,108 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.crypto {
+    display: flex;
+    justify-content: space-between;
+    width: 48%;
+    font-weight: 600;
+
+    &__item {
+        font-size: 18px;
+        margin-left: 5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__price {
+        color: rgb(3, 171, 3);
+    }
+
+    .low {
+        color: red;
+    }
+}
+
+header {
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.content {
+    max-width: 1200px;
+    padding: 20px 30px;
+    margin: 0 auto;
+}
+
+.content.header {
+    padding: 20px 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    &__name {
+        font-size: 30px;
+        margin-left: 10px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.item {
+    &__icon {
+        width: 40px;
+        height: 40px;
+        transition: 0.2s linear;
+    }
+}
+
+.wallet {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        cursor: pointer;
+
+        .item__icon {
+            transform: scale(1.1);
+        }
+    }
+
+    &-about {
+        margin: 0 15px;
+
+        &__text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        &__numbers {
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .crypto {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .logo {
+        &__name {
+            display: none;
+        }
+    }
+}
