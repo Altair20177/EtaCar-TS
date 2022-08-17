@@ -131,8 +131,8 @@
 
         &-header,
         &__line {
-            grid-template-columns: 30px 140px 57px repeat(3, 115px);
-            width: 570px;
+            grid-template-columns: 30px 140px 57px 125px repeat(2, 115px);
+            width: 580px;
         }
     }
 
