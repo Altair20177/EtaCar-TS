@@ -101,7 +101,7 @@ export default function AddCryptModal({
             onChange={(e) => onChange(e)}
             placeholder="Amount of Cryptocurrency"
           />
-          <p className="rules">Min value - 0.00001. Max value - 100000</p>
+          <p className="rules">Min value - 0.00001. Max value - 999999</p>
           <button className="modal__button" onClick={(e) => onSubmit(e)}>
             Add to Wallet
           </button>
