@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/EtaCar-TS/static/css/main.b80ccfa1.css",
+    "main.js": "/EtaCar-TS/static/js/main.6b259f31.js",
+    "static/media/spinner.svg": "/EtaCar-TS/static/media/spinner.7fa5535bcc6cb66e1f110c66ba5a3b7a.svg",
+    "static/media/arrowUp.svg": "/EtaCar-TS/static/media/arrowUp.1ec68f3a474351d3b413c25e3a1e241e.svg",
+    "static/media/arrowDown.svg": "/EtaCar-TS/static/media/arrowDown.d646b5639991aea82826b36e9dddd9d9.svg",
+    "static/media/cross.svg": "/EtaCar-TS/static/media/cross.56fb54991eb749982b51dd476c21d038.svg",
+    "static/media/neo.svg": "/EtaCar-TS/static/media/neo.3196a7a8e6ed5072c36a0a29f18a96c9.svg",
+    "static/media/wallet.svg": "/EtaCar-TS/static/media/wallet.a97170a7e25a52182f3d7d1afeef4e95.svg",
+    "static/media/crossDelete.svg": "/EtaCar-TS/static/media/crossDelete.fa3094d7139316c394db7c0967e22e64.svg",
+    "index.html": "/EtaCar-TS/index.html",
+    "main.b80ccfa1.css.map": "/EtaCar-TS/static/css/main.b80ccfa1.css.map",
+    "main.6b259f31.js.map": "/EtaCar-TS/static/js/main.6b259f31.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b80ccfa1.css",
+    "static/js/main.6b259f31.js"
+  ]
+}
