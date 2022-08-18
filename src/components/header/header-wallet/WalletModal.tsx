@@ -1,10 +1,10 @@
 import Modal from "../../generic/Modal";
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { deleteCryptFromWallet } from "../../../lib/actions/walletActions";
 import WalletModalLayout from "./WalletModalLayout";
 import checkInputSymbol from "../../generic/checkInputSymbol";
 import { Crypt } from "../../../types";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 
 export interface WalletModalProps {
   isWalletOpen: boolean;
@@ -15,13 +15,13 @@ export default function WalletModal({
   isWalletOpen,
   setIsWalletOpen,
 }: WalletModalProps) {
-  const walletData = useSelector((state: any) => state.walletPage);
-  const dispatch = useDispatch();
+  const walletData = useAppSelector((state) => state.walletPage);
+  const dispatch = useAppDispatch();
 
-  const [requestToDelete, setRequestToDelete] = useState(false);
-  const [deleteAmount, setDeleteAmount] = useState("");
-  const [cryptToDelete, setCryptToDelete] = useState<null | Crypt>(null);
-  const [error, setError] = useState(false);
+  const [requestToDelete, setRequestToDelete] = useState<boolean>(false);
+  const [deleteAmount, setDeleteAmount] = useState<string>("");
+  const [cryptToDelete, setCryptToDelete] = useState<Crypt>(walletData[0]);
+  const [error, setError] = useState<boolean>(false);
 
   function deleteCryptRequest(crypt: Crypt) {
     setRequestToDelete(true);
@@ -68,7 +68,7 @@ export default function WalletModal({
     setError(false);
   }
 
-  function onChange(e: any) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (!checkInputSymbol(e.target.value)) {
       return null;
     }

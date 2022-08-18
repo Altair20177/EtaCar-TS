@@ -14,14 +14,14 @@ export interface TableProps {
 export default function Table({ dataToShow }: TableProps) {
   const navigate = useNavigate();
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
   const [cryptAbout, setCryptAbout] = useState<CryptFromFetch>(dataToShow[0]);
 
   function aboutCrypt(cryptId: string) {
     navigate(`/${cryptId}`);
   }
 
-  function addCryptToWallet(e: any, crypt: CryptFromFetch) {
+  function addCryptToWallet(e: React.MouseEvent, crypt: CryptFromFetch) {
     e.stopPropagation();
 
     setIsPopupOpen(true);

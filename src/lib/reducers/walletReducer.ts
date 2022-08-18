@@ -21,11 +21,12 @@ export const walletReducer = (state = initialState, action: any) => {
       } else return [...state, action.payload.data];
     }
     case DELETE_CRYPT_FROM_WALLET: {
-      const workItem = state.find((item) => item.id === action.payload.data.id);
+      let workItem = action.payload.data;
+      workItem = state.find((item) => item.id === action.payload.data.id);
 
       if (workItem && workItem.amount <= action.payload.data.amountToDelete) {
         return [...state.filter((item) => item.id !== action.payload.data.id)];
-      } else if (workItem) {
+      } else {
         let itemIndex = 0;
 
         const newState = [...state];
@@ -38,7 +39,6 @@ export const walletReducer = (state = initialState, action: any) => {
 
         return [...newState];
       }
-      break;
     }
     default:
       return state;

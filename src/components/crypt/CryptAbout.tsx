@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { addDataAboutCrypt } from "../../lib/actions/cryptAboutActions";
 import createDataAbourCrypt from "./createDataAbourCrypt";
@@ -7,21 +6,24 @@ import spinner from "../generic/Spinner2.svg";
 import "./cryptAbout.scss";
 import Graph from "./Graph";
 import AddCryptModal from "./AddCryptModal";
-import { CryptMarket } from "../../types";
+import { CryptMarket, CryptFromFetch } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 export default function CryptAbout() {
-  const params = useParams();
-  const dispatch = useDispatch();
-  const dataAboutCrypt = useSelector((state: any) => state.cryptPage);
+  const { cryptId } = useParams<{ cryptId: string }>();
+  const dispatch = useAppDispatch();
+  const dataAboutCrypt = useAppSelector((state) => state.cryptPage);
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [cryptAbout, setCryptAbout] = useState(dataAboutCrypt[0]);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [cryptAbout, setCryptAbout] = useState<CryptFromFetch>(
+    dataAboutCrypt?.about
+  );
 
   useEffect(() => {
-    createDataAbourCrypt(params.cryptId).then((res) =>
+    createDataAbourCrypt(cryptId).then((res) =>
       dispatch(addDataAboutCrypt(res))
     );
-  }, [params]);
+  }, [cryptId]);
 
   function addCryptToWallet() {
     setIsPopupOpen(true);
@@ -31,7 +33,7 @@ export default function CryptAbout() {
   return (
     <section className="content">
       {!Object.keys(dataAboutCrypt).length ||
-      params.cryptId !== dataAboutCrypt.about.id ? (
+      cryptId !== dataAboutCrypt.about.id ? (
         <img className="preloader__item" src={spinner} alt="spinner" />
       ) : (
         <div>
@@ -90,17 +92,19 @@ export default function CryptAbout() {
                 <p className="markets__base">Base</p>
                 <p className="markets__quote">Quote</p>
               </li>
-              {dataAboutCrypt.markets.slice(0, 10).map((item: CryptMarket, index: number) => (
-                <li className="markets-line" key={index}>
-                  <p className="markets__id">{index + 1}</p>
-                  <p className="markets__name">{item.exchangeId}</p>
-                  <p className="markets__price">
-                    {(+item.priceUsd).toFixed(3)} $
-                  </p>
-                  <p className="markets__base">{item.baseId}</p>
-                  <p className="markets__quote">{item.quoteSymbol}</p>
-                </li>
-              ))}
+              {dataAboutCrypt.markets
+                .slice(0, 10)
+                .map((item: CryptMarket, index: number) => (
+                  <li className="markets-line" key={index}>
+                    <p className="markets__id">{index + 1}</p>
+                    <p className="markets__name">{item.exchangeId}</p>
+                    <p className="markets__price">
+                      {(+item.priceUsd).toFixed(3)} $
+                    </p>
+                    <p className="markets__base">{item.baseId}</p>
+                    <p className="markets__quote">{item.quoteSymbol}</p>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>

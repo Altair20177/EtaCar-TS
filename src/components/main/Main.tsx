@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import "./main.scss";
 
 import spinner from "../generic/Spinner2.svg";
 import Table from "./main-table/Table";
+import { CryptFromFetch } from "../../types";
+import { useAppSelector } from "../../hooks";
 
 export default function Main() {
-  const tableData = useSelector((state: any) => state.mainPage);
+  const tableData = useAppSelector((state) => state.mainPage);
 
-  const [dataToShow, setDataToShow] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [dataToShow, setDataToShow] = useState<Array<CryptFromFetch>>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
     const startIndex = currentPage === 1 ? 0 : (currentPage - 1) * 10;
@@ -26,8 +27,9 @@ export default function Main() {
     currentPage !== 1 && setCurrentPage(currentPage - 1);
   }
 
-  function changePage(e: any) {
-    setCurrentPage(+e.target.textContent);
+  function changePage(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    if (!(e.target instanceof HTMLElement)) return;
+    setCurrentPage(e.target.textContent ? +e.target.textContent : 1);
   }
 
   return (
@@ -43,19 +45,21 @@ export default function Main() {
             <div className="pagination-item" onClick={prevPage}>
               <p className="pagination-item__inner">Prev</p>
             </div>
-            {[...Array(Math.ceil(tableData.length / 10)).keys()].map((page: number) => {
-              return (
-                <div
-                  key={page}
-                  className={`pagination-item page_number ${
-                    page + 1 === currentPage ? "active" : ""
-                  }`}
-                  onClick={(e) => changePage(e)}
-                >
-                  <p className="pagination-item__inner">{page + 1}</p>
-                </div>
-              );
-            })}
+            {[...Array(Math.ceil(tableData.length / 10)).keys()].map(
+              (page: number) => {
+                return (
+                  <div
+                    key={page}
+                    className={`pagination-item page_number ${
+                      page + 1 === currentPage ? "active" : ""
+                    }`}
+                    onClick={(e) => changePage(e)}
+                  >
+                    <p className="pagination-item__inner">{page + 1}</p>
+                  </div>
+                );
+              }
+            )}
             <div className="current__page">{currentPage}</div>
             <div className="pagination-item" onClick={nextPage}>
               <p className="pagination-item__inner">Next</p>

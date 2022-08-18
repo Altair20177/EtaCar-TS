@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { addDataToTableAction } from "./lib/actions/tableActions";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
 import CryptAbout from "./components/crypt/CryptAbout";
 import { addCryptToWallet } from "./lib/actions/walletActions";
 import { Crypt, CryptFromFetch } from "./types";
+import { useAppDispatch } from "./hooks";
 
 function App() {
-  const dispatch = useDispatch();
-
+  const dispatch = useAppDispatch();
+  
   function refreshLocalStorage(
     dataFromStorage: Array<Crypt>,
     dataFromFetch: Array<CryptFromFetch>

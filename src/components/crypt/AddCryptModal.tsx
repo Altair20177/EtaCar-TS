@@ -3,10 +3,10 @@ import "../generic/cryptModal.scss";
 import cross from "../generic/cross.svg";
 import React, { useState } from "react";
 import Modal from "../generic/Modal";
-import { useDispatch } from "react-redux";
 import { addCryptToWallet } from "../../lib/actions/walletActions";
 import checkInputSymbol from "../generic/checkInputSymbol";
 import { Crypt, CryptFromFetch } from "../../types";
+import { useAppDispatch } from "../../hooks";
 
 export interface AddCryptModalProps {
   isPopupOpen: boolean;
@@ -19,11 +19,11 @@ export default function AddCryptModal({
   setIsPopupOpen,
   cryptAbout,
 }: AddCryptModalProps) {
-  const [amount, setAmount] = useState("");
-  const [error, setErorr] = useState(false);
+  const [amount, setAmount] = useState<string>("");
+  const [error, setErorr] = useState<boolean>(false);
 
-  const dispatch = useDispatch();
-
+  const dispatch = useAppDispatch();
+  
   function closePopup() {
     setIsPopupOpen(false);
     setErorr(false);
@@ -33,7 +33,7 @@ export default function AddCryptModal({
   function onSubmit(e: React.MouseEvent) {
     e.preventDefault();
 
-    let isItemUnique = true;
+    let isItemUnique: boolean = true;
 
     const { id, name, priceUsd, changePercent24Hr } = cryptAbout;
     const obj = {
@@ -69,7 +69,7 @@ export default function AddCryptModal({
     } else setErorr(true);
   }
 
-  function onChange(e: any) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (!checkInputSymbol(e.target.value)) {
       return null;
     }

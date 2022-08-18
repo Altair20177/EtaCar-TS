@@ -4,6 +4,7 @@ export type Crypt = {
   id: string;
   name: string;
   price: string | number;
+  amountToDelete?: number;
 };
 
 export type CryptFromFetch = {
@@ -36,4 +37,23 @@ export type CryptHistory = {
   date: string;
   priceUsd: string;
   time: number;
+};
+
+export type DataAboutCrypt = {
+  about: CryptFromFetch;
+  rates: {
+    currencySymbol: string | null;
+    id: string;
+    rateUsd: string;
+    symbol: string;
+    type: string;
+  };
+  markets: Array<CryptMarket>;
+  historyPerDay: Array<CryptHistory>;
+};
+
+export type State = {
+  mainPage: Array<CryptFromFetch>;
+  cryptPage: DataAboutCrypt;
+  walletPage: Array<Crypt>;
 };

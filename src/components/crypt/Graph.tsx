@@ -28,7 +28,7 @@ export interface GraphProps {
 }
 
 export default function Graph({ name, history }: GraphProps) {
-  const [newPer, setNewPer] = useState(history);
+  const [newPer, setNewPer] = useState<Array<CryptHistory>>(history);
 
   const data = {
     labels: newPer.map((item: CryptHistory) => item.date.slice(0, 10)),

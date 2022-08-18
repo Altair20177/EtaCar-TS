@@ -1,4 +1,6 @@
-export default async function createDataAbourCrypt(cryptId: string | undefined) {
+export default async function createDataAbourCrypt(
+  cryptId: string | undefined
+) {
   const aboutPromise = await fetch(
     `https://api.coincap.io/v2/assets/${cryptId}`
   );

@@ -4,7 +4,7 @@ export default function checkInputSymbol(str: string) {
 
   if (str.indexOf(".") !== -1) maxLength = str.indexOf(".") + 6;
 
-  if(str.length > maxLength) return false
+  if (str.length > maxLength) return false;
 
   str.length > 1 &&
     str.split("").forEach((item) => {
