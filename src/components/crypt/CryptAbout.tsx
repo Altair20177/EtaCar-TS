@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { addDataAboutCrypt } from "../../lib/actions/cryptAboutActions";
 import createDataAbourCrypt from "./createDataAbourCrypt";
-import spinner from "../generic/icons/spinner.svg";
+import spinner from "../generic/genericIcons/spinner.svg";
 import "./cryptAbout.scss";
 import Graph from "./Graph";
 import AddCryptModal from "./AddCryptModal";
