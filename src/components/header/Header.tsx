@@ -1,9 +1,9 @@
 import "./header.scss";
-import wallet from "./wallet.svg";
-import logo from "./neo.svg";
+import wallet from "./headerIcons/wallet.svg";
+import logo from "./headerIcons/neo.svg";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import WalletModal from "./header-wallet/WalletModal";
+import WalletModal from "./headerWallet/WalletModal";
 import { Crypt } from "../../types";
 import { useAppSelector } from "../../hooks";
 

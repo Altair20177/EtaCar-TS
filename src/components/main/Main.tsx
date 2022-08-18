@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./main.scss";
 
-import spinner from "../generic/Spinner2.svg";
-import Table from "./main-table/Table";
+import spinner from "../generic/genericIcons/spinner.svg";
+import Table from "./mainTable/Table";
 import { CryptFromFetch } from "../../types";
 import { useAppSelector } from "../../hooks";
 

@@ -1,7 +1,7 @@
 import "./walletModal.scss";
 
-import cross from "../../generic/cross.svg";
-import crossDelete from "./cross_delete.svg";
+import cross from "../../generic/genericIcons/cross.svg";
+import crossDelete from "./crossDelete.svg";
 import { Crypt } from "../../../types";
 
 export interface WalletModalLayoutProps {

@@ -36,7 +36,7 @@ export default function Graph({ name, history }: GraphProps) {
       {
         label: name + `'s price in USD per year (every week)`,
         borderColor: "rgb(7, 43, 52)",
-        data: newPer.map((item: CryptHistory) => (+item.priceUsd).toFixed(2)),
+        data: newPer.map((item: CryptHistory) => (+item.priceUsd).toFixed(6)),
       },
     ],
   };

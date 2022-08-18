@@ -1,3 +1,4 @@
+import { AnyAction } from "@reduxjs/toolkit";
 import { Crypt } from "../../types";
 
 const ADD_CRYPT_TO_WALLET = "ADD_CRYPT_TO_WALLET";
@@ -5,7 +6,7 @@ const DELETE_CRYPT_FROM_WALLET = "DELETE_CRYPT_FROM_WALLET";
 
 let initialState: Array<Crypt> = [];
 
-export const walletReducer = (state = initialState, action: any) => {
+export const walletReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case ADD_CRYPT_TO_WALLET: {
       const same = state.filter((item) => item.id === action.payload.data.id);

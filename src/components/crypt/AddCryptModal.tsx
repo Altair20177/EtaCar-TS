@@ -1,6 +1,6 @@
 import "../generic/cryptModal.scss";
 
-import cross from "../generic/cross.svg";
+import cross from "../generic/genericIcons/cross.svg";
 import React, { useState } from "react";
 import Modal from "../generic/Modal";
 import { addCryptToWallet } from "../../lib/actions/walletActions";
@@ -23,7 +23,7 @@ export default function AddCryptModal({
   const [error, setErorr] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  
+
   function closePopup() {
     setIsPopupOpen(false);
     setErorr(false);

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { addDataAboutCrypt } from "../../lib/actions/cryptAboutActions";
 import createDataAbourCrypt from "./createDataAbourCrypt";
-import spinner from "../generic/Spinner2.svg";
+import spinner from "../generic/icons/spinner.svg";
 import "./cryptAbout.scss";
 import Graph from "./Graph";
 import AddCryptModal from "./AddCryptModal";
@@ -40,7 +40,6 @@ export default function CryptAbout() {
           <h1 className="title">
             {dataAboutCrypt.rates?.currencySymbol} {dataAboutCrypt.about.name}
           </h1>
-
           <div className="two-columns">
             <ul className="crypt-about">
               <li className="crypt__item">
@@ -51,7 +50,7 @@ export default function CryptAbout() {
               </li>
               <li className="crypt__item">
                 VW Price:{" "}
-                <span>{(+dataAboutCrypt.about.priceUsd).toFixed(4)}$</span>
+                <span>{(+dataAboutCrypt.about.priceUsd).toFixed(6)}$</span>
               </li>
               <li className="crypt__item">
                 Change in the last 24h:
@@ -99,7 +98,7 @@ export default function CryptAbout() {
                     <p className="markets__id">{index + 1}</p>
                     <p className="markets__name">{item.exchangeId}</p>
                     <p className="markets__price">
-                      {(+item.priceUsd).toFixed(3)} $
+                      {(+item.priceUsd).toFixed(6)} $
                     </p>
                     <p className="markets__base">{item.baseId}</p>
                     <p className="markets__quote">{item.quoteSymbol}</p>

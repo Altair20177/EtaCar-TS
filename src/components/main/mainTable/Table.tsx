@@ -1,7 +1,7 @@
 import "../main.scss";
 
-import arrowUp from "./arrow_up.svg";
-import arrowDown from "./arrow_down.svg";
+import arrowUp from "./mainTableIcons/arrowUp.svg";
+import arrowDown from "./mainTableIcons/arrowDown.svg";
 import { useNavigate } from "react-router";
 import AddCryptModal from "../../crypt/AddCryptModal";
 import { useState } from "react";
