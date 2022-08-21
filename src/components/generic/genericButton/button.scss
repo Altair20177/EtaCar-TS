@@ -1,0 +1,59 @@
+.button {
+    &__wrapper {
+        border: 1px solid rgb(208, 208, 208);
+        position: relative;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(208, 208, 208);
+        }
+    }
+}
+
+.action {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0 auto;
+}
+
+.md {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.sm {
+    border-radius: 3px;
+    padding: 10px 15px;
+}
+
+.lg {
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 20px;
+}
+
+.pagination__item,
+.next__prev {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.active_page {
+    background-color: rgb(162, 162, 162);
+
+    &:hover {
+        background-color: rgb(162, 162, 162);
+    }
+}
+
+@media (max-width: 640px) {
+    .pagination__item {
+        display: none;
+    }
+}

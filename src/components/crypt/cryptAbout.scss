@@ -17,6 +17,11 @@ h1.title {
     margin: 50px 0;
 }
 
+h2.title {
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
 .two-columns {
     display: flex;
     justify-content: center;
@@ -63,28 +68,10 @@ h1.title {
     }
 }
 
-.markets {
-    &-list {
-        width: 80%;
-        margin: 0 auto;
-        margin-top: 30px;
-    }
-
-    &-line {
-        font-size: 18px;
-        display: grid;
-        text-align: center;
-        grid-template-columns: 5% 30% 25% 20% 20%;
-        height: 40px;
-        align-items: center;
-        border-bottom: 1px solid rgb(0, 0, 0);
-    }
-
-    &-header {
-        font-weight: 600;
-        margin-bottom: 10px;
-        border-bottom: none;
-    }
+.markets-block {
+    margin-bottom: 30px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 @media (max-width: 640px) {
@@ -105,6 +92,10 @@ h1.title {
         &-line {
             grid-template-columns: 25px 150px 120px repeat(2, 100px);
             width: 490px;
+        }
+
+        &-block {
+            width: 100%;
         }
     }
 }

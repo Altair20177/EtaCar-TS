@@ -6,12 +6,13 @@ import { useNavigate } from "react-router";
 import AddCryptModal from "../../crypt/AddCryptModal";
 import { useState } from "react";
 import { CryptFromFetch } from "../../../types";
+import Button from "../../generic/genericButton/Button";
 
 export interface TableProps {
   dataToShow: Array<CryptFromFetch>;
 }
 
-export default function Table({ dataToShow }: TableProps) {
+export default function TableMain({ dataToShow }: TableProps) {
   const navigate = useNavigate();
 
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
@@ -29,26 +30,26 @@ export default function Table({ dataToShow }: TableProps) {
   }
 
   return (
-    <section className="table">
-      <div className="table-header">
-        <p className="rank table-header__item">Rank</p>
-        <p className="name table-header__item">Name</p>
-        <p className="symbol table-header__item">Symbol</p>
-        <p className="price table-header__item">Price</p>
-        <p className="change table-header__item">Change (24h)</p>
-        <p className="add table-header__item">Add to Wallet</p>
+    <section className="crypts">
+      <div className="crypts-header">
+        <p className="rank crypts-header__item">Rank</p>
+        <p className="name crypts-header__item">Name</p>
+        <p className="symbol crypts-header__item">Symbol</p>
+        <p className="price crypts-header__item">Price</p>
+        <p className="change crypts-header__item">Change (24h)</p>
+        <p className="add crypts-header__item">Add to Wallet</p>
       </div>
       {dataToShow.map((crypt: CryptFromFetch) => {
         return (
           <div
-            className="table__line"
+            className="crypts__line"
             key={crypt.id}
             onClick={() => aboutCrypt(crypt.id)}
           >
             <p className="rank">{crypt.rank}</p>
             <p className="name">{crypt.name}</p>
             <p className="symbol">{crypt.symbol}</p>
-            <p className="price">{(+crypt.priceUsd).toFixed(5)} $</p>
+            <p className="price">{(+crypt.priceUsd).toFixed(5)}$</p>
             <div className="change">
               <div className="change__content">
                 <p className={crypt.changePercent24Hr < 0 ? "lower" : ""}>
@@ -61,9 +62,9 @@ export default function Table({ dataToShow }: TableProps) {
                 />
               </div>
             </div>
-            <button className="add" onClick={(e) => addCryptToWallet(e, crypt)}>
+            <Button onClick={(e) => addCryptToWallet(e, crypt)} type="action">
               Add
-            </button>
+            </Button>
           </div>
         );
       })}

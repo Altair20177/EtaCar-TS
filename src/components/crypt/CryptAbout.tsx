@@ -8,6 +8,8 @@ import Graph from "./Graph";
 import AddCryptModal from "./AddCryptModal";
 import { CryptMarket, CryptFromFetch } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import Button from "../generic/genericButton/Button";
+import Table from "../generic/genericTable/Table";
 
 export default function CryptAbout() {
   const { cryptId } = useParams<{ cryptId: string }>();
@@ -28,6 +30,29 @@ export default function CryptAbout() {
   function addCryptToWallet() {
     setIsPopupOpen(true);
     setCryptAbout(dataAboutCrypt.about);
+  }
+
+  function createDataForTableMain(markets?: Array<CryptMarket>) {
+    const data: { headers: string[]; lines: string[][] } = {
+      headers: ["№", "Market Name", "Price", "Base", "Quote"],
+      lines: [],
+    };
+
+    markets &&
+      markets.slice(0, 10).forEach((market, index) => {
+        const obj = {
+          number: String(index + 1),
+          exchangeId: market.exchangeId,
+          priceUsd: String((+market.priceUsd).toFixed(6)) + " $",
+          baseId: market.baseId,
+          quoteSymbol: market.quoteSymbol,
+        };
+
+        const arr: string[] = [...Object.values(obj)];
+        data.lines.push(arr);
+      });
+
+    return data;
   }
 
   return (
@@ -70,9 +95,9 @@ export default function CryptAbout() {
                 Market Cap USD:{" "}
                 <span>{+dataAboutCrypt.about.marketCapUsd}$</span>
               </li>
-              <li className="crypt__add" onClick={addCryptToWallet}>
+              <Button type="action" onClick={addCryptToWallet}>
                 Add to Wallet
-              </li>
+              </Button>
             </ul>
             <div className="crypt-graph">
               <Graph
@@ -81,30 +106,14 @@ export default function CryptAbout() {
               />
             </div>
           </div>
-          <div className="markets">
+          <div className="markets-block">
             <h2 className="title">TOP-10 Markets</h2>
-            <ul className="markets-list">
-              <li className="markets-line markets-header">
-                <p className="markets__id">№</p>
-                <p className="markets__name">Market Name</p>
-                <p className="markets__price">Price</p>
-                <p className="markets__base">Base</p>
-                <p className="markets__quote">Quote</p>
-              </li>
-              {dataAboutCrypt.markets
-                .slice(0, 10)
-                .map((item: CryptMarket, index: number) => (
-                  <li className="markets-line" key={index}>
-                    <p className="markets__id">{index + 1}</p>
-                    <p className="markets__name">{item.exchangeId}</p>
-                    <p className="markets__price">
-                      {(+item.priceUsd).toFixed(6)} $
-                    </p>
-                    <p className="markets__base">{item.baseId}</p>
-                    <p className="markets__quote">{item.quoteSymbol}</p>
-                  </li>
-                ))}
-            </ul>
+
+            <Table
+              type="markets"
+              headers={createDataForTableMain().headers}
+              lines={createDataForTableMain(dataAboutCrypt.markets).lines}
+            />
           </div>
         </div>
       )}

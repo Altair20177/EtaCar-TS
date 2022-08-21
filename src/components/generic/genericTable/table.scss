@@ -1,0 +1,50 @@
+.table {
+    margin: 0 auto;
+    font-size: 18px;
+
+    &-header {
+        font-weight: normal;
+        margin-bottom: 10px;
+        border-bottom: none;
+        display: grid;
+        text-align: center;
+    }
+
+    &-line {
+        border-bottom: 1px solid #afafaf;
+        font-weight: 600;
+        align-items: center;
+        display: grid;
+        text-align: center;
+    }
+}
+
+.markets {
+    grid-template-columns: 5% 30% 25% 20% 20%;
+    height: 40px;
+}
+
+.wallet-modal {
+    grid-template-columns: 24% 12% 26% 26% 12%;
+    height: 40px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+    .table {
+        overflow: scroll;
+
+        &-header {
+            width: 520px;
+        }
+    }
+
+    .markets {
+        grid-template-columns: 25px 150px 130px repeat(2, 110px);
+        width: 520px;
+    }
+
+    .wallet-modal {
+        width: 520px;
+    }
+}

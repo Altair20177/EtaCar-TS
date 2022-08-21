@@ -7,6 +7,7 @@ import { addCryptToWallet } from "../../lib/actions/walletActions";
 import checkInputSymbol from "../generic/checkInputSymbol";
 import { Crypt, CryptFromFetch } from "../../types";
 import { useAppDispatch } from "../../hooks";
+import Button from "../generic/genericButton/Button";
 
 export interface AddCryptModalProps {
   isPopupOpen: boolean;
@@ -102,9 +103,9 @@ export default function AddCryptModal({
             placeholder="Amount of Cryptocurrency"
           />
           <p className="rules">Min value - 0.00001. Max value - 999999</p>
-          <button className="modal__button" onClick={(e) => onSubmit(e)}>
+          <Button type="action" size="lg" onClick={(e) => onSubmit(e)}>
             Add to Wallet
-          </button>
+          </Button>
         </form>
       </div>
     </Modal>

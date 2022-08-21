@@ -38,18 +38,6 @@
         margin-right: 20px;
         padding: 0 10px;
     }
-
-    &__confirm {
-        padding: 10px 15px;
-        background-color: rgba(215, 215, 215, 0.6);
-        border-radius: 3px;
-        transition: 0.2s;
-
-        &:hover {
-            cursor: pointer;
-            background-color: rgba(215, 215, 215, 1);
-        }
-    }
 }
 
 .error {

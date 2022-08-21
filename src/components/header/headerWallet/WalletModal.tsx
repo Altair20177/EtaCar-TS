@@ -23,9 +23,10 @@ export default function WalletModal({
   const [cryptToDelete, setCryptToDelete] = useState<Crypt>(walletData[0]);
   const [error, setError] = useState<boolean>(false);
 
-  function deleteCryptRequest(crypt: Crypt) {
+  function deleteCryptRequest(index: number) {
     setRequestToDelete(true);
-    setCryptToDelete(crypt);
+    const arrCrypt: Array<Crypt> = walletData.slice(index, index + 1);
+    setCryptToDelete(arrCrypt[0]);
   }
 
   function deleteCrypt() {

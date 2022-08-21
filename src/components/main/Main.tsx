@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import "./main.scss";
 
 import spinner from "../generic/genericIcons/spinner.svg";
-import Table from "./mainTable/Table";
+import TableMain from "./mainTable/TableMain";
 import { CryptFromFetch } from "../../types";
 import { useAppSelector } from "../../hooks";
+import Button from "../generic/genericButton/Button";
 
 export default function Main() {
   const tableData = useAppSelector((state) => state.mainPage);
@@ -39,31 +40,31 @@ export default function Main() {
         <img className="preloader__item" src={spinner} alt="spinner" />
       ) : (
         <div>
-          <Table dataToShow={dataToShow} />
+          <TableMain dataToShow={dataToShow} />
 
           <section className="pagination">
-            <div className="pagination-item" onClick={prevPage}>
-              <p className="pagination-item__inner">Prev</p>
-            </div>
+            <Button size="sm" type="next__prev" onClick={prevPage}>
+              Prev
+            </Button>
             {[...Array(Math.ceil(tableData.length / 10)).keys()].map(
               (page: number) => {
                 return (
-                  <div
+                  <Button
                     key={page}
-                    className={`pagination-item page_number ${
-                      page + 1 === currentPage ? "active" : ""
-                    }`}
+                    size="sm"
+                    type="pagination__item"
                     onClick={(e) => changePage(e)}
+                    active={page + 1 === currentPage}
                   >
-                    <p className="pagination-item__inner">{page + 1}</p>
-                  </div>
+                    {page + 1}
+                  </Button>
                 );
               }
             )}
             <div className="current__page">{currentPage}</div>
-            <div className="pagination-item" onClick={nextPage}>
-              <p className="pagination-item__inner">Next</p>
-            </div>
+            <Button size="sm" type="next__prev" onClick={nextPage}>
+              Next
+            </Button>
           </section>
         </div>
       )}

@@ -1,15 +1,16 @@
 import "./walletModal.scss";
 
 import cross from "../../generic/genericIcons/cross.svg";
-import crossDelete from "./crossDelete.svg";
 import { Crypt } from "../../../types";
+import Button from "../../generic/genericButton/Button";
+import Table from "../../generic/genericTable/Table";
 
 export interface WalletModalLayoutProps {
   walletData: Array<Crypt>;
   closePopup: () => void;
   onChange: (e: any) => void;
   deleteCrypt: () => void;
-  deleteCryptRequest: (crypt: Crypt) => void;
+  deleteCryptRequest: (index: number) => void;
   error: boolean;
   requestToDelete: boolean;
   deleteAmount: string | number;
@@ -27,6 +28,28 @@ export default function WalletModalLayout({
   deleteAmount,
   cryptToDelete,
 }: WalletModalLayoutProps) {
+  function createDataForTableWallet(walletData?: Array<Crypt>) {
+    const data: { headers: string[]; lines: string[][] } = {
+      headers: ["Name", "Amount", "Price", "Total Price", "Remove"],
+      lines: [],
+    };
+
+    walletData &&
+      walletData.forEach((crypt) => {
+        const obj = {
+          name: crypt.name,
+          amount: String(Math.round(crypt.amount * 100000) / 100000),
+          price: String((+crypt.price).toFixed(5)) + "$",
+          totalPrice: String((crypt.amount * +crypt.price).toFixed(4)) + "$",
+        };
+
+        const arr: string[] = [...Object.values(obj)];
+        data.lines.push(arr);
+      });
+
+    return data;
+  }
+
   return (
     <>
       <div className="modal-header">
@@ -55,9 +78,9 @@ export default function WalletModalLayout({
               className={`delete__input ${error ? "error" : ""}`}
               placeholder={`Remove ${cryptToDelete.name}`}
             />
-            <button onClick={deleteCrypt} className="delete__confirm">
+            <Button onClick={deleteCrypt} type="delete__crypt" size="sm">
               Remove
-            </button>
+            </Button>
           </form>
         </>
       ) : null}
@@ -65,32 +88,12 @@ export default function WalletModalLayout({
         <p className="wallet__empty">Wallet is Empty</p>
       ) : (
         <div className="modal-body">
-          <div className="modal-line table__header">
-            <p className="name">Name</p>
-            <p className="amount">Amount</p>
-            <p className="price">Price</p>
-            <p className="price__total">Total Price</p>
-            <p>Remove</p>
-          </div>
-          <div className="modal-table">
-            {walletData.map((crypt: Crypt) => (
-              <div className="modal-line" key={crypt.id}>
-                <p className="name">{crypt.name}</p>
-                <p className="amount">
-                  {Math.floor(crypt.amount * 10000) / 10000}
-                </p>
-                <p className="price">
-                  {Math.floor(+crypt.price * 100000) / 100000}$
-                </p>
-                <p className="price__total">
-                  {Math.floor(+crypt.price * crypt.amount * 10000) / 10000}$
-                </p>
-                <div onClick={() => deleteCryptRequest(crypt)}>
-                  <img className="remove" src={crossDelete} alt="cross" />
-                </div>
-              </div>
-            ))}
-          </div>
+          <Table
+            type="wallet-modal"
+            headers={createDataForTableWallet().headers}
+            lines={createDataForTableWallet(walletData).lines}
+            onClick={deleteCryptRequest}
+          />
         </div>
       )}
     </>
