@@ -8,6 +8,7 @@
         border-bottom: none;
         display: grid;
         text-align: center;
+        height: 30px;
     }
 
     &-line {
@@ -16,17 +17,44 @@
         align-items: center;
         display: grid;
         text-align: center;
+        height: 40px;
     }
+}
+
+.black {
+    border-bottom: 1px solid black;
+}
+
+.lightGray {
+    border-bottom: 1px solid rgb(205, 205, 205);
+}
+
+.normal {
+    font-weight: normal;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.low {
+    height: 30px;
+}
+
+.high {
+    height: 40px;
+}
+
+.veryhigh {
+    height: 50px;
 }
 
 .markets {
     grid-template-columns: 5% 30% 25% 20% 20%;
-    height: 40px;
 }
 
 .wallet-modal {
     grid-template-columns: 24% 12% 26% 26% 12%;
-    height: 40px;
     margin-bottom: 0;
 }
 

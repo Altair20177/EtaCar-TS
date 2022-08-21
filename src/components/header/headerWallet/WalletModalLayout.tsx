@@ -93,6 +93,8 @@ export default function WalletModalLayout({
             headers={createDataForTableWallet().headers}
             lines={createDataForTableWallet(walletData).lines}
             onClick={deleteCryptRequest}
+            fontWeight="normal"
+            lineHeight="low"
           />
         </div>
       )}

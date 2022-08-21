@@ -113,6 +113,7 @@ export default function CryptAbout() {
               type="markets"
               headers={createDataForTableMain().headers}
               lines={createDataForTableMain(dataAboutCrypt.markets).lines}
+              borderBottomColor="black"
             />
           </div>
         </div>
