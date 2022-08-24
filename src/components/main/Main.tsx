@@ -7,7 +7,7 @@ import { CryptFromFetch } from "../../types";
 import { useAppSelector } from "../../hooks";
 import Button from "../generic/genericButton/Button";
 
-export default function Main() {
+export default function Main({ loading }: { loading: boolean }) {
   const tableData = useAppSelector((state) => state.mainPage);
 
   const [dataToShow, setDataToShow] = useState<Array<CryptFromFetch>>([]);
@@ -36,7 +36,7 @@ export default function Main() {
   return (
     <main className="content main">
       <h2 className="title">All Cryptocurrency</h2>
-      {!tableData.length ? (
+      {loading ? (
         <img className="preloader__item" src={spinner} alt="spinner" />
       ) : (
         <div>

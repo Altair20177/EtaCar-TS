@@ -7,10 +7,13 @@ import CryptAbout from "./components/crypt/CryptAbout";
 import { addCryptToWallet } from "./lib/actions/walletActions";
 import { Crypt, CryptFromFetch } from "./types";
 import { useAppDispatch } from "./hooks";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_CRYPTS } from "./lib/query/crypt";
 
 function App() {
   const dispatch = useAppDispatch();
-  
+  const { data, loading, error } = useQuery(GET_ALL_CRYPTS);
+
   function refreshLocalStorage(
     dataFromStorage: Array<Crypt>,
     dataFromFetch: Array<CryptFromFetch>
@@ -29,33 +32,27 @@ function App() {
         }
       });
     });
-
     localStorage.setItem("wallet", JSON.stringify(newArr));
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("https://api.coincap.io/v2/assets/");
-      const data = await res.json();
+    !loading && dispatch(addDataToTableAction(data.getAllCrypts));
 
-      dispatch(addDataToTableAction(data.data));
+    const storage = localStorage.getItem("wallet");
 
-      const storage = localStorage.getItem("wallet");
-
-      if (storage) {
-        JSON.parse(storage).forEach((item: Crypt) => dispatch(addCryptToWallet(item)));
-        refreshLocalStorage(JSON.parse(storage), data.data);
-      }
+    if (storage && !loading) {
+      JSON.parse(storage).forEach((item: Crypt) =>
+        dispatch(addCryptToWallet(item))
+      );
+      refreshLocalStorage(JSON.parse(storage), data.getAllCrypts);
     }
-
-    fetchData();
-  }, []);
+  }, [data, loading]);
 
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main loading={loading} />} />
         <Route path=":cryptId" element={<CryptAbout />} />
       </Routes>
     </BrowserRouter>

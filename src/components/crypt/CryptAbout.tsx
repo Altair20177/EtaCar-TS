@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { addDataAboutCrypt } from "../../lib/actions/cryptAboutActions";
-import createDataAbourCrypt from "./createDataAbourCrypt";
 import spinner from "../generic/genericIcons/spinner.svg";
 import "./cryptAbout.scss";
 import Graph from "./Graph";
@@ -10,6 +9,8 @@ import { CryptMarket, CryptFromFetch } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import Button from "../generic/genericButton/Button";
 import Table from "../generic/genericTable/Table";
+import { useQuery } from "@apollo/client";
+import { GET_CRYPT_ABOUT } from "../../lib/query/crypt";
 
 export default function CryptAbout() {
   const { cryptId } = useParams<{ cryptId: string }>();
@@ -21,11 +22,15 @@ export default function CryptAbout() {
     dataAboutCrypt?.about
   );
 
+  const { data, loading, error } = useQuery(GET_CRYPT_ABOUT, {
+    variables: {
+      id: cryptId,
+    },
+  });
+
   useEffect(() => {
-    createDataAbourCrypt(cryptId).then((res) =>
-      dispatch(addDataAboutCrypt(res))
-    );
-  }, [cryptId]);
+    !loading && dispatch(addDataAboutCrypt(data?.getCryptAbout));
+  }, [cryptId, loading]);
 
   function addCryptToWallet() {
     setIsPopupOpen(true);
