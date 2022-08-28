@@ -36,10 +36,11 @@ export default function AddCryptModal({
 
     let isItemUnique: boolean = true;
 
-    const { id, name, priceUsd, changePercent24Hr } = cryptAbout;
+    const { id, name, priceUsd, changePercent24Hr, symbol } = cryptAbout;
     const obj = {
       id,
       name,
+      symbol,
       price: priceUsd,
       amount: +amount,
       change: changePercent24Hr,

@@ -4,6 +4,7 @@ import cross from "../../generic/genericIcons/cross.svg";
 import { Crypt } from "../../../types";
 import Button from "../../generic/genericButton/Button";
 import Table from "../../generic/genericTable/Table";
+import PieChart from "../headerPieChart/PieChart";
 
 export interface WalletModalLayoutProps {
   walletData: Array<Crypt>;
@@ -96,6 +97,17 @@ export default function WalletModalLayout({
             fontWeight="normal"
             lineHeight="low"
           />
+          {walletData?.length !== 0 && (
+            <div className="pie-container">
+              <PieChart
+                data={walletData}
+                width={200}
+                height={200}
+                innerRadius={0}
+                outerRadius={100}
+              />
+            </div>
+          )}
         </div>
       )}
     </>

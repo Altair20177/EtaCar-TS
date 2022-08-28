@@ -5,6 +5,7 @@ export type Crypt = {
   name: string;
   price: string | number;
   amountToDelete?: number;
+  symbol?: string;
 };
 
 export type CryptFromFetch = {
@@ -36,7 +37,7 @@ export type CryptMarket = {
 export type CryptHistory = {
   date: string;
   priceUsd: string;
-  time: number;
+  time?: number;
 };
 
 export type DataAboutCrypt = {

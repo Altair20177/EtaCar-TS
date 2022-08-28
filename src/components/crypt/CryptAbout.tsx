@@ -106,8 +106,7 @@ export default function CryptAbout() {
             </ul>
             <div className="crypt-graph">
               <Graph
-                name={dataAboutCrypt.about.name}
-                history={dataAboutCrypt.historyPerDay}
+                historyProp={dataAboutCrypt.historyPerDay}
               />
             </div>
           </div>
