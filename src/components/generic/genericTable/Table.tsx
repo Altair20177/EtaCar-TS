@@ -25,7 +25,14 @@ export default function Table({
       <ul>
         <li className={`table-header ${lineHeight} ${type}`}>
           {headers.map((header, index) => (
-            <p key={index} className="table__item">
+            <p
+              key={index}
+              className={`table__item ${
+                (index === 3 || index === 4) && type === "markets"
+                  ? "adaptive"
+                  : ""
+              } ${index === 2 && type === "wallet-modal" ? "adaptive" : ""}`}
+            >
               {header}
             </p>
           ))}
@@ -38,7 +45,14 @@ export default function Table({
             className={`table-line ${fontWeight} ${borderBottomColor} ${type} ${lineHeight}`}
           >
             {line.map((item, index) => (
-              <p key={index} className="table__item">
+              <p
+                key={index}
+                className={`table__item ${
+                  (index === 3 || index === 4) && type === "markets"
+                    ? "adaptive"
+                    : ""
+                } ${index === 2 && type === "wallet-modal" ? "adaptive" : ""}`}
+              >
                 {item}
               </p>
             ))}

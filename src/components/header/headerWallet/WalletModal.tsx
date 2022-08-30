@@ -69,8 +69,14 @@ export default function WalletModal({
     setError(false);
   }
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!checkInputSymbol(e.target.value)) {
+  function onChange(
+    e: React.ChangeEvent<HTMLInputElement>,
+    cryptToDelete: Crypt
+  ) {
+    if (
+      !checkInputSymbol(e.target.value) ||
+      cryptToDelete.amount < +e.target.value
+    ) {
       return null;
     }
 

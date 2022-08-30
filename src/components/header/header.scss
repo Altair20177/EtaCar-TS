@@ -97,6 +97,10 @@ header {
     .crypto {
         display: none;
     }
+
+    .content.header{
+        padding: 10px;
+    }
 }
 
 @media (max-width: 420px) {

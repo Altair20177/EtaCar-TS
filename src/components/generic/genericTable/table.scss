@@ -59,20 +59,16 @@
 }
 
 @media (max-width: 640px) {
-    .table {
-        overflow: scroll;
-
-        &-header {
-            width: 520px;
-        }
+    .adaptive {
+        display: none;
     }
 
     .markets {
-        grid-template-columns: 25px 150px 130px repeat(2, 110px);
-        width: 520px;
+        grid-template-columns: 20% 40% 40%;
     }
 
     .wallet-modal {
-        width: 520px;
+        grid-template-columns: 27% 15% 40% 18%;
+        font-size: 16px;
     }
 }

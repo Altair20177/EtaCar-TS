@@ -41,7 +41,7 @@
 
 .pagination {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -81,13 +81,20 @@
 @media (max-width: 640px) {
     .crypts {
         width: 100%;
-        overflow: scroll;
 
         &-header,
         &__line {
-            grid-template-columns: 30px 140px 57px 125px repeat(2, 115px);
-            width: 580px;
+            grid-template-columns: 13% 10% 33% 19% 25%;
+            font-size: 14px;
         }
+    }
+    
+    .change__content{
+        justify-content: center;
+    }
+
+    .adaptive{
+        display: none;
     }
 
     .pagination {

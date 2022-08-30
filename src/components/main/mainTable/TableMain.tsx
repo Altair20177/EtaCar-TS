@@ -33,7 +33,7 @@ export default function TableMain({ dataToShow }: TableProps) {
     <section className="crypts">
       <div className="crypts-header">
         <p className="rank crypts-header__item">Rank</p>
-        <p className="name crypts-header__item">Name</p>
+        <p className="name crypts-header__item adaptive">Name</p>
         <p className="symbol crypts-header__item">Symbol</p>
         <p className="price crypts-header__item">Price</p>
         <p className="change crypts-header__item">Change (24h)</p>
@@ -47,7 +47,7 @@ export default function TableMain({ dataToShow }: TableProps) {
             onClick={() => aboutCrypt(crypt.id)}
           >
             <p className="rank">{crypt.rank}</p>
-            <p className="name">{crypt.name}</p>
+            <p className="name adaptive">{crypt.name}</p>
             <p className="symbol">{crypt.symbol}</p>
             <p className="price">{(+crypt.priceUsd).toFixed(5)}$</p>
             <div className="change">
@@ -59,6 +59,7 @@ export default function TableMain({ dataToShow }: TableProps) {
                 <img
                   src={crypt.changePercent24Hr < 0 ? arrowDown : arrowUp}
                   alt="arrow"
+                  className="adaptive"
                 />
               </div>
             </div>

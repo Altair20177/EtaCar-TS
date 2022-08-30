@@ -9,7 +9,10 @@ import PieChart from "../headerPieChart/PieChart";
 export interface WalletModalLayoutProps {
   walletData: Array<Crypt>;
   closePopup: () => void;
-  onChange: (e: any) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    cryptToDelete: Crypt
+  ) => void;
   deleteCrypt: () => void;
   deleteCryptRequest: (index: number) => void;
   error: boolean;
@@ -74,7 +77,7 @@ export default function WalletModalLayout({
           >
             <input
               value={deleteAmount}
-              onChange={(e) => onChange(e)}
+              onChange={(e) => onChange(e, cryptToDelete)}
               type="text"
               className={`delete__input ${error ? "error" : ""}`}
               placeholder={`Remove ${cryptToDelete.name}`}

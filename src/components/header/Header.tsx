@@ -48,14 +48,21 @@ export default function Header() {
               key={index}
               onClick={() => navigate(`/${topCrypts[index].id}`)}
             >
-              <span className="crypto__name">{topCrypts[index]?.name}</span> -{" "}
-              <span
-                className={`crypto__price ${
-                  topCrypts[index]?.changePercent24Hr < 0 ? "low" : ""
-                }`}
-              >
-                {Math.floor(+topCrypts[index]?.priceUsd * 100) / 100}$
-              </span>
+              {topCrypts.length ? (
+                <>
+                  <span className="crypto__name">{topCrypts[index]?.name}</span>{" "}
+                  -{" "}
+                  <span
+                    className={`crypto__price ${
+                      topCrypts[index]?.changePercent24Hr < 0 ? "low" : ""
+                    }`}
+                  >
+                    {Math.floor(+topCrypts[index]?.priceUsd * 100) / 100}$
+                  </span>
+                </>
+              ) : (
+                "---"
+              )}
             </li>
           ))}
         </ul>
@@ -63,7 +70,9 @@ export default function Header() {
           <div className="wallet-about">
             <p className="wallet-about__text">My Wallet</p>
             <p className="wallet-about__numbers">
-              {walletData && walletData.length ? walletPrice() : "Wallet is empty"}
+              {walletData && walletData.length
+                ? walletPrice()
+                : "Wallet is empty"}
             </p>
           </div>
           <div className="item-wrapper">
