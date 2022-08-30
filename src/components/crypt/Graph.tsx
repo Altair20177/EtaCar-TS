@@ -72,24 +72,22 @@ export default function Graph({
     .y((d) => y(+d.priceUsd));
 
   return (
-    <div>
-      <svg viewBox={`0 0 ${width} ${height}`}>
-        <g transform={`translate(0,${height - margin.bottom})`}>
-          <Axis scale={x} orient={Orient.bottom} />
-        </g>
-        <g transform={`translate(${margin.left},0)`}>
-          <Axis scale={y} orient={Orient.left} />
-        </g>
-        <path
-          fill={fillColor}
-          stroke={graphColor}
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          d={line(history) as string}
-        />
-      </svg>
-    </div>
+    <svg viewBox={`0 0 ${width} ${height}`}>
+      <g transform={`translate(0,${height - margin.bottom})`}>
+        <Axis scale={x} orient={Orient.bottom} />
+      </g>
+      <g transform={`translate(${margin.left},0)`}>
+        <Axis scale={y} orient={Orient.left} />
+      </g>
+      <path
+        fill={fillColor}
+        stroke={graphColor}
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        d={line(history) as string}
+      />
+    </svg>
   );
 
   /* const [newPer, setNewPer] = useState<Array<CryptHistory>>(history);

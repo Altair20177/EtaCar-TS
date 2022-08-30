@@ -7,7 +7,7 @@ import { store } from "./store";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  uri: "https://mysterious-forest-66885.herokuapp.com/graphql",
   cache: new InMemoryCache(),
 });
 

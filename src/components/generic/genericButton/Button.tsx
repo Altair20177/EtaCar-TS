@@ -2,9 +2,9 @@ import "./button.scss";
 
 export interface ButtonProps {
   size?: string;
-  type: string;
+  type?: string;
   children?: React.ReactNode;
-  onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   active?: boolean;
 }
 
@@ -16,13 +16,13 @@ export default function Button({
   active = false,
 }: ButtonProps) {
   return (
-    <div
+    <button
       onClick={onClick}
       className={`button__wrapper ${size} ${type} ${
         active ? "active_page" : ""
       }`}
     >
       {children}
-    </div>
+    </button>
   );
 }

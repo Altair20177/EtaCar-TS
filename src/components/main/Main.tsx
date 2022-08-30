@@ -28,7 +28,7 @@ export default function Main({ loading }: { loading: boolean }) {
     currentPage !== 1 && setCurrentPage(currentPage - 1);
   }
 
-  function changePage(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function changePage(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (!(e.target instanceof HTMLElement)) return;
     setCurrentPage(e.target.textContent ? +e.target.textContent : 1);
   }
