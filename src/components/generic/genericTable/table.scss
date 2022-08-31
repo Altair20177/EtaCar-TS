@@ -58,6 +58,11 @@
     margin-bottom: 0;
 }
 
+.wallet-crypts {
+    height: 155px;
+    overflow-y: auto;
+}
+
 @media (max-width: 640px) {
     .adaptive {
         display: none;
