@@ -83,11 +83,11 @@ export interface PieChartProps {
 export default function PieChart({ data }: PieChartProps) {
   console.log(data);
 
-  function createColor(opacity: number) {
+  function createColor() {
     const r = Math.floor(Math.random() * 255);
     const g = Math.floor(Math.random() * 255);
     const b = Math.floor(Math.random() * 255);
-    return "rgba(" + r + "," + g + "," + b + `,${opacity})`;
+    return "rgba(" + r + "," + g + "," + b + `,0.4)`;
   }
 
   const dataToPie = {
@@ -96,7 +96,7 @@ export default function PieChart({ data }: PieChartProps) {
       {
         label: "# of Crypts",
         data: data.map((item) => item.amount),
-        backgroundColor: data.map((item) => createColor(0.2)),
+        backgroundColor: data.map((item) => createColor()),
         borderColor: "rgba(0, 0, 0, 0.1)",
         borderWidth: 1,
       },
