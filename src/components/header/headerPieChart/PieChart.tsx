@@ -81,12 +81,24 @@ export interface PieChartProps {
 }
 
 export default function PieChart({ data }: PieChartProps) {
-  console.log(data);
+  function createColorPart(num: number, index: number) {
+    let value = index * num + 20;
 
-  function createColor() {
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
+    if (value <= 254) return value;
+    else {
+      while (value > 254) {
+        value = value - (num / 2) * (index / 4) + 5;
+      }
+
+      return Math.floor(value);
+    }
+  }
+
+  function createColor(index: number) {
+    const r = Math.floor(createColorPart(30, index));
+    const g = Math.floor(createColorPart(60, index));
+    const b = Math.floor(createColorPart(90, index));
+
     return "rgba(" + r + "," + g + "," + b + `,0.4)`;
   }
 
@@ -96,7 +108,7 @@ export default function PieChart({ data }: PieChartProps) {
       {
         label: "# of Crypts",
         data: data.map((item) => item.amount),
-        backgroundColor: data.map((item) => createColor()),
+        backgroundColor: data.map((item, index) => createColor(index)),
         borderColor: "rgba(0, 0, 0, 0.1)",
         borderWidth: 1,
       },
