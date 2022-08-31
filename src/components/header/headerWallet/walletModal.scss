@@ -52,9 +52,10 @@
 }
 
 .pie-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 15px;
 }
 
 @media (max-width: 640px) {

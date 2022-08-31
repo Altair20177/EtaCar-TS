@@ -104,10 +104,10 @@ export default function WalletModalLayout({
             <div className="pie-container">
               <PieChart
                 data={walletData}
-                width={200}
-                height={200}
-                innerRadius={0}
-                outerRadius={100}
+                //width={200}
+                //height={200}
+                //innerRadius={0}
+                //outerRadius={100}
               />
             </div>
           )}

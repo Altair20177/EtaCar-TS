@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+/* import * as d3 from "d3";
 import { PieArcDatum } from "d3";
 import { useLayoutEffect, useRef } from "react";
 import { Crypt } from "../../../types";
@@ -43,7 +43,10 @@ export default function PieChart(props: PieChartProps) {
     const svg = d3
       .select(ref.current)
       .append("g")
-      .attr("transform", `translate(${props.width / 2},${props.height / 2})`);
+      .attr(
+        "transform",
+        `translate(${props.outerRadius} ${props.outerRadius})`
+      );
 
     const g = svg.selectAll("path").data(dataCrypts).enter().append("g");
 
@@ -53,13 +56,52 @@ export default function PieChart(props: PieChartProps) {
 
     g.append("text")
       .attr("transform", (d) => "translate(" + createArc.centroid(d) + ")")
-      .attr("textAnchor", "middle")
-      .attr("alignmentBaseline", "middle")
       .attr("fill", "white")
-      .text((d) => d.data.symbol);
+      .text((d) => d.data.amount);
   }, [walletCrypts]);
 
   return (
     <svg className="pie" ref={ref} width={props.width} height={props.height} />
   );
+}
+ */
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "react-chartjs-2";
+import { Crypt } from "../../../types";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+export interface PieChartProps {
+  data: Array<Crypt>;
+  /*   innerRadius: number;
+  outerRadius: number;
+  height: number;
+  width: number; */
+}
+
+export default function PieChart({ data }: PieChartProps) {
+  console.log(data);
+
+  function createColor(opacity: number) {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    return "rgba(" + r + "," + g + "," + b + `,${opacity})`;
+  }
+
+  const dataToPie = {
+    labels: data.map((item) => item.symbol),
+    datasets: [
+      {
+        label: "# of Crypts",
+        data: data.map((item) => item.amount),
+        backgroundColor: data.map((item) => createColor(0.2)),
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return <Pie data={dataToPie} />;
 }
