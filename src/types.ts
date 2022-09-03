@@ -12,12 +12,12 @@ export type CryptFromFetch = {
   changePercent24Hr: string | number;
   explorer?: string;
   id: string;
-  marketCapUsd?: string;
+  marketCapUsd: string;
   maxSupply?: string;
   name: string;
   priceUsd: string;
   rank: string;
-  supply?: string;
+  supply: string;
   symbol: string;
   volumeUsd24Hr?: string;
   vwap24Hr?: string;

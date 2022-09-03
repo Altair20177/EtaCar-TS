@@ -1,32 +1,36 @@
-import { AnyAction } from "@reduxjs/toolkit";
 import { Crypt } from "../../types";
-
-const ADD_CRYPT_TO_WALLET = "ADD_CRYPT_TO_WALLET";
-const DELETE_CRYPT_FROM_WALLET = "DELETE_CRYPT_FROM_WALLET";
+import { WalletAction, WalletActionTypes } from "../actions/walletActions";
 
 let initialState: Array<Crypt> = [];
 
-export const walletReducer = (state = initialState, action: AnyAction) => {
+export const walletReducer = (
+  state = initialState,
+  action: WalletAction
+): Array<Crypt> => {
   switch (action.type) {
-    case ADD_CRYPT_TO_WALLET: {
-      const same = state.filter((item) => item.id === action.payload.data.id);
+    case WalletActionTypes.ADD_CRYPT_TO_WALLET: {
+      const same = state.filter((item) => item.id === action.payload.id);
 
       if (same.length) {
         const newState = [...state];
         const itemIndex = newState.indexOf(same[0]);
         const newItem = { ...newState[itemIndex] };
-        newItem.amount += action.payload.data.amount;
+        newItem.amount += action.payload.amount;
         newState[itemIndex] = newItem;
 
         return [...newState];
-      } else return [...state, action.payload.data];
+      } else return [...state, action.payload];
     }
-    case DELETE_CRYPT_FROM_WALLET: {
-      let workItem = action.payload.data;
-      workItem = state.find((item) => item.id === action.payload.data.id);
+    case WalletActionTypes.DELETE_CRYPT_FROM_WALLET: {
+      let workItem =
+        state.find((item) => item.id === action.payload.id) || action.payload;
 
-      if (workItem && workItem.amount <= action.payload.data.amountToDelete) {
-        return [...state.filter((item) => item.id !== action.payload.data.id)];
+      if (
+        workItem &&
+        action.payload.amountToDelete &&
+        workItem.amount <= action.payload.amountToDelete
+      ) {
+        return [...state.filter((item) => item.id !== action.payload.id)];
       } else {
         let itemIndex = 0;
 
@@ -35,7 +39,8 @@ export const walletReducer = (state = initialState, action: AnyAction) => {
           if (item.id === workItem.id) itemIndex = index;
         });
         const newItem = { ...newState[itemIndex] };
-        newItem.amount -= action.payload.data.amountToDelete;
+        if (action.payload.amountToDelete)
+          newItem.amount -= action.payload.amountToDelete;
         newState[itemIndex] = newItem;
 
         return [...newState];

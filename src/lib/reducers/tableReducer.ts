@@ -1,14 +1,15 @@
-import { AnyAction } from "@reduxjs/toolkit";
 import { CryptFromFetch } from "../../types";
-
-const ADD_DATA_TO_TABLE = "ADD_DATA_TO_TABLE";
+import { TableAction, TableActionTypes } from "../actions/tableActions";
 
 let initialState: Array<CryptFromFetch> = [];
 
-export const tableReducer = (state = initialState, action: AnyAction) => {
+export const tableReducer = (
+  state = initialState,
+  action: TableAction
+): Array<CryptFromFetch> => {
   switch (action.type) {
-    case ADD_DATA_TO_TABLE: {
-      return action.payload.data;
+    case TableActionTypes.ADD_DATA_TO_TABLE: {
+      return action.payload;
     }
     default:
       return state;

@@ -1,9 +1,9 @@
 import "./walletModal.scss";
 
-import cross from "../../generic/genericIcons/cross.svg";
+import cross from "../../generic/icons/cross.svg";
 import { Crypt } from "../../../types";
-import Button from "../../generic/genericButton/Button";
-import Table from "../../generic/genericTable/Table";
+import Button from "../../generic/button/Button";
+import Table from "../../generic/table/Table";
 import PieChart from "../headerPieChart/PieChart";
 
 export interface WalletModalLayoutProps {
@@ -68,7 +68,8 @@ export default function WalletModalLayout({
       {requestToDelete && cryptToDelete ? (
         <>
           <p className="rules">
-            Minimal value - 0.00001. Maximal value - {cryptToDelete.amount}.
+            Minimal value - 0.00001. Maximal value -{" "}
+            {cryptToDelete.amount < 999999 ? cryptToDelete.amount : "999999"}.
           </p>
           <form
             onSubmit={(e) => e.preventDefault()}

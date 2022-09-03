@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { addDataAboutCrypt } from "../../lib/actions/cryptAboutActions";
-import spinner from "../generic/genericIcons/spinner.svg";
+import spinner from "../generic/icons/spinner.svg";
 import "./cryptAbout.scss";
 import Graph from "./Graph";
 import AddCryptModal from "./AddCryptModal";
 import { CryptMarket, CryptFromFetch } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import Button from "../generic/genericButton/Button";
-import Table from "../generic/genericTable/Table";
+import Button from "../generic/button/Button";
+import Table from "../generic/table/Table";
 import { useQuery } from "@apollo/client";
 import { GET_CRYPT_ABOUT } from "../../lib/query/crypt";
 

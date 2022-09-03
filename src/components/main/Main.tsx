@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./main.scss";
 
-import spinner from "../generic/genericIcons/spinner.svg";
+import spinner from "../generic/icons/spinner.svg";
 import TableMain from "./mainTable/TableMain";
 import { CryptFromFetch } from "../../types";
 import { useAppSelector } from "../../hooks";
-import Button from "../generic/genericButton/Button";
+import Button from "../generic/button/Button";
 
 export default function Main({ loading }: { loading: boolean }) {
   const tableData = useAppSelector((state) => state.mainPage);

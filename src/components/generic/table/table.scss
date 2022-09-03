@@ -55,12 +55,9 @@
 
 .wallet-modal {
     grid-template-columns: 24% 12% 26% 26% 12%;
-    margin-bottom: 0;
-}
-
-.wallet-crypts {
-    max-height: 155px;
     overflow-y: auto;
+    max-height: 155px;
+    margin-bottom: 0;
 }
 
 @media (max-width: 640px) {

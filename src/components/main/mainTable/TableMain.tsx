@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import AddCryptModal from "../../crypt/AddCryptModal";
 import { useState } from "react";
 import { CryptFromFetch } from "../../../types";
-import Button from "../../generic/genericButton/Button";
+import Button from "../../generic/button/Button";
 
 export interface TableProps {
   dataToShow: Array<CryptFromFetch>;

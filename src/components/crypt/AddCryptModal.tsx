@@ -1,13 +1,13 @@
 import "../generic/cryptModal.scss";
 
-import cross from "../generic/genericIcons/cross.svg";
+import cross from "../generic/icons/cross.svg";
 import React, { useState } from "react";
 import Modal from "../generic/Modal";
 import { addCryptToWallet } from "../../lib/actions/walletActions";
 import checkInputSymbol from "../generic/checkInputSymbol";
 import { Crypt, CryptFromFetch } from "../../types";
 import { useAppDispatch } from "../../hooks";
-import Button from "../generic/genericButton/Button";
+import Button from "../generic/button/Button";
 
 export interface AddCryptModalProps {
   isPopupOpen: boolean;
@@ -46,7 +46,7 @@ export default function AddCryptModal({
       change: changePercent24Hr,
     };
 
-    if (amount) {
+    if (+amount !== 0 && amount) {
       dispatch(addCryptToWallet(obj));
 
       const walletGet = localStorage.getItem("wallet");
@@ -104,9 +104,11 @@ export default function AddCryptModal({
             placeholder="Amount of Cryptocurrency"
           />
           <p className="rules">Min value - 0.00001. Max value - 999999</p>
-          <Button type="action" size="lg" onClick={(e) => onSubmit(e)}>
-            Add to Wallet
-          </Button>
+          <div className="button-container">
+            <Button type="button" size="lg" onClick={(e) => onSubmit(e)}>
+              Add to Wallet
+            </Button>
+          </div>
         </form>
       </div>
     </Modal>

@@ -77,6 +77,11 @@ input::-webkit-inner-spin-button {
     }
 }
 
+.button-container{
+    display: flex;
+    justify-content: center;
+}
+
 .open {
     visibility: visible;
     opacity: 1;

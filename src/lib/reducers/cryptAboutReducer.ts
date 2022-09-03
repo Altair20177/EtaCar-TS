@@ -1,13 +1,38 @@
-import { AnyAction } from "@reduxjs/toolkit";
+import { DataAboutCrypt } from "../../types";
+import {
+  CryptAboutAction,
+  CryptAboutActionTypes,
+} from "../actions/cryptAboutActions";
 
-const ADD_DATA_TO_CRYPT_ABOUT = "ADD_DATA_TO_CRYPT_ABOUT";
+let initialState: DataAboutCrypt = {
+  about: {
+    changePercent24Hr: "",
+    id: "",
+    name: "",
+    priceUsd: "",
+    rank: "",
+    symbol: "",
+    supply: "",
+    marketCapUsd: "",
+  },
+  rates: {
+    currencySymbol: "",
+    id: "",
+    rateUsd: "",
+    symbol: "",
+    type: "",
+  },
+  markets: [],
+  historyPerDay: [],
+};
 
-let initialState = {};
-
-export const cryptAboutReducer = (state = initialState, action: AnyAction) => {
+export const cryptAboutReducer = (
+  state = initialState,
+  action: CryptAboutAction
+): DataAboutCrypt => {
   switch (action.type) {
-    case ADD_DATA_TO_CRYPT_ABOUT: {
-      return action.payload.data;
+    case CryptAboutActionTypes.ADD_DATA_TO_CRYPT_ABOUT: {
+      return action.payload;
     }
     default:
       return state;

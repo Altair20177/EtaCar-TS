@@ -38,7 +38,7 @@ export default function Table({
           ))}
         </li>
       </ul>
-      <ul className="wallet-crypts">
+      <ul className={`${type}`}>
         {lines.map((line, index) => (
           <li
             key={index}
