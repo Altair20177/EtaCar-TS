@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import "./main.scss";
+import "../components/main/main.scss";
 
-import spinner from "../generic/icons/spinner.svg";
-import TableMain from "./mainTable/TableMain";
-import { CryptFromFetch } from "../../types";
-import { useAppSelector } from "../../hooks";
-import Button from "../generic/button/Button";
+import spinner from "../components/generic/icons/spinner.svg";
+import TableMain from "../components/main/mainTable/TableMain";
+import { CryptFromFetch } from "../types";
+import { useAppSelector } from "../hooks";
+import Button from "../components/generic/button/Button";
 
 export default function Main({ loading }: { loading: boolean }) {
   const tableData = useAppSelector((state) => state.mainPage);
@@ -43,7 +43,7 @@ export default function Main({ loading }: { loading: boolean }) {
           <TableMain dataToShow={dataToShow} />
 
           <section className="pagination">
-            <Button size="sm" type="next__prev" onClick={prevPage}>
+            <Button size="sm" buttonType="next__prev" onClick={prevPage}>
               Prev
             </Button>
             {[...Array(Math.ceil(tableData.length / 10)).keys()].map(
@@ -52,7 +52,7 @@ export default function Main({ loading }: { loading: boolean }) {
                   <Button
                     key={page}
                     size="sm"
-                    type="pagination__item"
+                    buttonType="pagination__item"
                     onClick={(e) => changePage(e)}
                     active={page + 1 === currentPage}
                   >
@@ -62,7 +62,7 @@ export default function Main({ loading }: { loading: boolean }) {
               }
             )}
             <div className="current__page">{currentPage}</div>
-            <Button size="sm" type="next__prev" onClick={nextPage}>
+            <Button size="sm" buttonType="next__prev" onClick={nextPage}>
               Next
             </Button>
           </section>

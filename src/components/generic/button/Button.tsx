@@ -2,7 +2,7 @@ import "./button.scss";
 
 export interface ButtonProps {
   size?: string;
-  type?: string;
+  buttonType?: string;
   children?: React.ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   active?: boolean;
@@ -11,14 +11,15 @@ export interface ButtonProps {
 export default function Button({
   size = "md",
   children = null,
-  type = "pagination__item",
+  buttonType = "pagination__item",
   onClick,
   active = false,
 }: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`button__wrapper ${size} ${type} ${
+      type="button"
+      className={`button__wrapper ${size} ${buttonType} ${
         active ? "active_page" : ""
       }`}
     >

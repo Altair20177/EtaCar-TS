@@ -63,7 +63,10 @@ export default function TableMain({ dataToShow }: TableProps) {
                 />
               </div>
             </div>
-            <Button onClick={(e) => addCryptToWallet(e, crypt)} type="action">
+            <Button
+              onClick={(e) => addCryptToWallet(e, crypt)}
+              buttonType="action"
+            >
               Add
             </Button>
           </div>

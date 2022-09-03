@@ -83,7 +83,7 @@ export default function WalletModalLayout({
               className={`delete__input ${error ? "error" : ""}`}
               placeholder={`Remove ${cryptToDelete.name}`}
             />
-            <Button onClick={deleteCrypt} type="delete__crypt" size="sm">
+            <Button onClick={deleteCrypt} buttonType="delete__crypt" size="sm">
               Remove
             </Button>
           </form>
