@@ -4,11 +4,13 @@ import "../components/main/main.scss";
 import spinner from "../components/generic/icons/spinner.svg";
 import TableMain from "../components/main/mainTable/TableMain";
 import { CryptFromFetch } from "../types";
-import { useAppSelector } from "../hooks";
 import Button from "../components/generic/button/Button";
 
+import { useQuery } from "@apollo/client";
+import { GET_ALL_CRYPTS } from "../lib/query/crypt";
+
 export default function Main({ loading }: { loading: boolean }) {
-  const tableData = useAppSelector((state) => state.mainPage);
+  const { data, error } = useQuery(GET_ALL_CRYPTS);
 
   const [dataToShow, setDataToShow] = useState<Array<CryptFromFetch>>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -16,11 +18,12 @@ export default function Main({ loading }: { loading: boolean }) {
   useEffect(() => {
     const startIndex = currentPage === 1 ? 0 : (currentPage - 1) * 10;
 
-    setDataToShow(tableData.slice(startIndex, startIndex + 10));
-  }, [currentPage, tableData]);
+    !loading &&
+      setDataToShow(data.getAllCrypts.slice(startIndex, startIndex + 10));
+  }, [currentPage, data, loading]);
 
   function nextPage() {
-    currentPage !== Math.ceil(tableData.length / 10) &&
+    currentPage !== Math.ceil(data.getAllCrypts.length / 10) &&
       setCurrentPage(+currentPage + 1);
   }
 
@@ -46,7 +49,7 @@ export default function Main({ loading }: { loading: boolean }) {
             <Button size="sm" buttonType="next__prev" onClick={prevPage}>
               Prev
             </Button>
-            {[...Array(Math.ceil(tableData.length / 10)).keys()].map(
+            {[...Array(Math.ceil(data.getAllCrypts.length / 10)).keys()].map(
               (page: number) => {
                 return (
                   <Button

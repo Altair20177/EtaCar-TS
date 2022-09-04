@@ -18,7 +18,6 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      type="button"
       className={`button__wrapper ${size} ${buttonType} ${
         active ? "active_page" : ""
       }`}

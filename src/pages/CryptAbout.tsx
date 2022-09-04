@@ -5,7 +5,7 @@ import spinner from "../components/generic/icons/spinner.svg";
 import "../components/crypt/cryptAbout.scss";
 import Graph from "../components/crypt/Graph";
 import AddCryptModal from "../components/crypt/AddCryptModal";
-import { CryptMarket, CryptFromFetch } from "../types";
+import { CryptMarket, CryptFromFetch, DataAboutCrypt } from "../types";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import Button from "../components/generic/button/Button";
 import Table from "../components/generic/table/Table";
@@ -15,12 +15,7 @@ import { GET_CRYPT_ABOUT } from "../lib/query/crypt";
 export default function CryptAbout() {
   const { cryptId } = useParams<{ cryptId: string }>();
   const dispatch = useAppDispatch();
-  const dataAboutCrypt = useAppSelector((state) => state.cryptPage);
-
-  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
-  const [cryptAbout, setCryptAbout] = useState<CryptFromFetch>(
-    dataAboutCrypt?.about
-  );
+  //const dataAboutCrypt = useAppSelector((state) => state.cryptPage);
 
   const { data, loading, error } = useQuery(GET_CRYPT_ABOUT, {
     variables: {
@@ -28,13 +23,23 @@ export default function CryptAbout() {
     },
   });
 
+  const [crypt, setCrypt] = useState<DataAboutCrypt>(data?.getCryptAbout);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [cryptAbout, setCryptAbout] = useState<CryptFromFetch>(
+    data?.getCryptAbout.about
+  );
+
   useEffect(() => {
-    !loading && dispatch(addDataAboutCrypt(data?.getCryptAbout));
+    /*     if (!loading) {
+      dispatch(addDataAboutCrypt(data?.getCryptAbout));
+      setCrypt(data?.getCryptAbout);
+    } */
+    !loading && setCrypt(data?.getCryptAbout);
   }, [cryptId, loading]);
 
   function addCryptToWallet() {
     setIsPopupOpen(true);
-    setCryptAbout(dataAboutCrypt.about);
+    setCryptAbout(data?.getCryptAbout.about);
   }
 
   function createDataForTableMain(markets?: Array<CryptMarket>) {
@@ -62,50 +67,45 @@ export default function CryptAbout() {
 
   return (
     <section className="content">
-      {!Object.keys(dataAboutCrypt).length ||
-      cryptId !== dataAboutCrypt.about.id ? (
-        <img className="preloader__item" src={spinner} alt="spinner" />
-      ) : (
+      {!loading && crypt ? (
         <div>
           <h1 className="title">
-            {dataAboutCrypt.rates?.currencySymbol} {dataAboutCrypt.about.name}
+            {crypt.rates?.currencySymbol} {crypt.about.name}
           </h1>
           <div className="two-columns">
             <ul className="crypt-about">
               <li className="crypt__item">
-                Rank: <span>{dataAboutCrypt.about.rank}</span>
+                Rank: <span>{crypt.about.rank}</span>
               </li>
               <li className="crypt__item">
-                Symbol: <span>{dataAboutCrypt.about.symbol}</span>
+                Symbol: <span>{crypt.about.symbol}</span>
               </li>
               <li className="crypt__item">
-                VW Price:{" "}
-                <span>{(+dataAboutCrypt.about.priceUsd).toFixed(6)}$</span>
+                VW Price: <span>{(+crypt.about.priceUsd).toFixed(6)}$</span>
               </li>
               <li className="crypt__item">
                 Change in the last 24h:
                 <span
                   className={`${
-                    +dataAboutCrypt.about.changePercent24Hr > 0 ? "high" : "low"
+                    +crypt.about.changePercent24Hr > 0 ? "high" : "low"
                   }`}
                 >
                   {" "}
-                  {(+dataAboutCrypt.about.changePercent24Hr).toFixed(4)}%
+                  {(+crypt.about.changePercent24Hr).toFixed(4)}%
                 </span>
               </li>
               <li className="crypt__item">
-                Supply: <span>{+dataAboutCrypt.about.supply}</span>
+                Supply: <span>{+crypt.about.supply}</span>
               </li>
               <li className="crypt__item">
-                Market Cap USD:{" "}
-                <span>{+dataAboutCrypt.about.marketCapUsd}$</span>
+                Market Cap USD: <span>{+crypt.about.marketCapUsd}$</span>
               </li>
               <Button buttonType="action" onClick={addCryptToWallet}>
                 Add to Wallet
               </Button>
             </ul>
             <div className="crypt-graph">
-              <Graph historyProp={dataAboutCrypt.historyPerDay} />
+              <Graph historyProp={crypt.historyPerDay} />
             </div>
           </div>
           <div className="markets-block">
@@ -114,11 +114,13 @@ export default function CryptAbout() {
             <Table
               type="markets"
               headers={createDataForTableMain().headers}
-              lines={createDataForTableMain(dataAboutCrypt.markets).lines}
+              lines={createDataForTableMain(crypt.markets).lines}
               borderBottomColor="black"
             />
           </div>
         </div>
+      ) : (
+        <img className="preloader__item" src={spinner} alt="spinner" />
       )}
       <AddCryptModal
         isPopupOpen={isPopupOpen}

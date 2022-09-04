@@ -59,6 +59,9 @@ export default function WalletModal({
         setRequestToDelete(false);
       }
       localStorage.setItem("wallet", JSON.stringify(correctWallet));
+
+      obj.amount -= +deleteAmount;
+      setCryptToDelete(obj);
     }
   }
 

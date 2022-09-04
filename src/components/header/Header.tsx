@@ -2,17 +2,26 @@ import "./header.scss";
 import wallet from "./headerIcons/wallet.svg";
 import logo from "./headerIcons/neo.svg";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import WalletModal from "./headerWallet/WalletModal";
-import { Crypt } from "../../types";
+import { Crypt, CryptFromFetch } from "../../types";
 import { useAppSelector } from "../../hooks";
+
+import { useQuery } from "@apollo/client";
+import { GET_ALL_CRYPTS } from "../../lib/query/crypt";
 
 export default function Header() {
   const navigate = useNavigate();
   const walletData = useAppSelector((state) => state.walletPage);
-  const topCrypts = useAppSelector((state) => state.mainPage);
+
+  const { data, loading, error } = useQuery(GET_ALL_CRYPTS);
+
+  useEffect(() => {
+    !loading && setTopCrypts(data.getAllCrypts);
+  }, [data, loading]);
 
   const [isWalletOpen, setIsWalletOpen] = useState<boolean>(false);
+  const [topCrypts, setTopCrypts] = useState<CryptFromFetch[]>([]);
 
   function walletPrice() {
     if (walletData) {
