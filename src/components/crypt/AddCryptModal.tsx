@@ -105,7 +105,7 @@ export default function AddCryptModal({
           />
           <p className="rules">Min value - 0.00001. Max value - 999999</p>
           <div className="button-container">
-            <Button buttonType="button" size="lg" onClick={(e) => onSubmit(e)}>
+            <Button buttonType="button" size="size_lg" onClick={(e) => onSubmit(e)}>
               Add to Wallet
             </Button>
           </div>

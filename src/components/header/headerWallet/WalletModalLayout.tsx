@@ -67,7 +67,7 @@ export default function WalletModalLayout({
       </div>
       {requestToDelete && cryptToDelete ? (
         <>
-          <p className="rules">
+          <p className="modal__rules">
             Minimal value - 0.00001. Maximal value -{" "}
             {cryptToDelete.amount < 999999
               ? Math.floor(cryptToDelete.amount * 10000) / 10000
@@ -77,16 +77,20 @@ export default function WalletModalLayout({
           <form
             onSubmit={(e) => e.preventDefault()}
             action="submit"
-            className="delete"
+            className="form-delete"
           >
             <input
               value={deleteAmount}
               onChange={(e) => onChange(e, cryptToDelete)}
               type="text"
-              className={`delete__input ${error ? "error" : ""}`}
+              className={`form-delete__input ${error ? "error" : ""}`}
               placeholder={`Remove ${cryptToDelete.name}`}
             />
-            <Button onClick={deleteCrypt} buttonType="delete__crypt" size="sm">
+            <Button
+              onClick={deleteCrypt}
+              buttonType="button_delete"
+              size="size_sm"
+            >
               Remove
             </Button>
           </form>
@@ -97,15 +101,15 @@ export default function WalletModalLayout({
       ) : (
         <div className="modal-body">
           <Table
-            type="wallet-modal"
+            type="table_wallet"
             headers={createDataForTableWallet().headers}
             lines={createDataForTableWallet(walletData).lines}
             onClick={deleteCryptRequest}
-            fontWeight="normal"
-            lineHeight="low"
+            fontWeight="weight_normal"
+            lineHeight="height_low"
           />
           {walletData?.length !== 0 && (
-            <div className="pie-container">
+            <div className="modal-pie">
               <PieChart
                 data={walletData}
                 //width={200}

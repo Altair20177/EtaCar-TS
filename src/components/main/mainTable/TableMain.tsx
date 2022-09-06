@@ -52,20 +52,24 @@ export default function TableMain({ dataToShow }: TableProps) {
             <p className="price">{(+crypt.priceUsd).toFixed(5)}$</p>
             <div className="change">
               <div className="change__content">
-                <p className={crypt.changePercent24Hr < 0 ? "lower" : ""}>
+                <p
+                  className={
+                    crypt.changePercent24Hr < 0 ? "change__content_low" : ""
+                  }
+                >
                   {crypt.changePercent24Hr > 0 && "+"}
                   {(+crypt.changePercent24Hr).toFixed(4)}%
                 </p>
                 <img
                   src={crypt.changePercent24Hr < 0 ? arrowDown : arrowUp}
                   alt="arrow"
-                  className="adaptive"
+                  className="change__image adaptive"
                 />
               </div>
             </div>
             <Button
               onClick={(e) => addCryptToWallet(e, crypt)}
-              buttonType="action"
+              buttonType="button_action"
             >
               Add
             </Button>

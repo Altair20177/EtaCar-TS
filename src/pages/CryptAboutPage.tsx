@@ -69,25 +69,36 @@ export default function CryptAboutPage() {
     <section className="content">
       {!loading && crypt ? (
         <div>
-          <h1 className="title">
+          <h1 className="content__title content__title_big">
             {crypt.rates?.currencySymbol} {crypt.about.name}
           </h1>
           <div className="two-columns">
             <ul className="crypt-about">
               <li className="crypt__item">
-                Rank: <span>{crypt.about.rank}</span>
+                Rank:{" "}
+                <span className="crypt__item crypt__item_bold">
+                  {crypt.about.rank}
+                </span>
               </li>
               <li className="crypt__item">
-                Symbol: <span>{crypt.about.symbol}</span>
+                Symbol:{" "}
+                <span className="crypt__item crypt__item_bold">
+                  {crypt.about.symbol}
+                </span>
               </li>
               <li className="crypt__item">
-                VW Price: <span>{(+crypt.about.priceUsd).toFixed(6)}$</span>
+                VW Price:{" "}
+                <span className="crypt__item crypt__item_bold">
+                  {(+crypt.about.priceUsd).toFixed(6)}$
+                </span>
               </li>
               <li className="crypt__item">
                 Change in the last 24h:
                 <span
-                  className={`${
-                    +crypt.about.changePercent24Hr > 0 ? "high" : "low"
+                  className={`crypt__item ${
+                    +crypt.about.changePercent24Hr > 0
+                      ? "crypt__item_high"
+                      : "crypt__item_low"
                   }`}
                 >
                   {" "}
@@ -95,12 +106,18 @@ export default function CryptAboutPage() {
                 </span>
               </li>
               <li className="crypt__item">
-                Supply: <span>{+crypt.about.supply}</span>
+                Supply:{" "}
+                <span className="crypt__item crypt__item_bold">
+                  {+crypt.about.supply}
+                </span>
               </li>
               <li className="crypt__item">
-                Market Cap USD: <span>{+crypt.about.marketCapUsd}$</span>
+                Market Cap USD:{" "}
+                <span className="crypt__item crypt__item_bold">
+                  {+crypt.about.marketCapUsd}$
+                </span>
               </li>
-              <Button buttonType="action" onClick={addCryptToWallet}>
+              <Button buttonType="button_action" onClick={addCryptToWallet}>
                 Add to Wallet
               </Button>
             </ul>
@@ -109,13 +126,13 @@ export default function CryptAboutPage() {
             </div>
           </div>
           <div className="markets-block">
-            <h2 className="title">TOP-10 Markets</h2>
+            <h2 className="content__title content__title_sm">TOP-10 Markets</h2>
 
             <Table
-              type="markets"
+              type="table_markets"
               headers={createDataForTableMain().headers}
               lines={createDataForTableMain(crypt.markets).lines}
-              borderBottomColor="black"
+              borderBottomColor="border_black"
             />
           </div>
         </div>

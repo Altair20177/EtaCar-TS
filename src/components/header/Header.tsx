@@ -68,7 +68,7 @@ export default function Header() {
                   -{" "}
                   <span
                     className={`crypto__price ${
-                      topCrypts[index]?.changePercent24Hr < 0 ? "low" : ""
+                      topCrypts[index]?.changePercent24Hr < 0 ? "crypto__price_low" : ""
                     }`}
                   >
                     {Math.floor(+topCrypts[index]?.priceUsd * 100) / 100}$

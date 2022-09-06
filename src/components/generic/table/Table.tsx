@@ -12,7 +12,7 @@ export interface TableProps {
 }
 
 export default function Table({
-  type = "markets",
+  type = "table_markets",
   headers = [],
   lines = [],
   onClick,
@@ -28,10 +28,10 @@ export default function Table({
             <p
               key={index}
               className={`table__item ${
-                (index === 3 || index === 4) && type === "markets"
+                (index === 3 || index === 4) && type === "table_markets"
                   ? "adaptive"
                   : ""
-              } ${index === 2 && type === "wallet-modal" ? "adaptive" : ""}`}
+              } ${index === 2 && type === "table_wallet" ? "adaptive" : ""}`}
             >
               {header}
             </p>
@@ -48,15 +48,15 @@ export default function Table({
               <p
                 key={index}
                 className={`table__item ${
-                  (index === 3 || index === 4) && type === "markets"
+                  (index === 3 || index === 4) && type === "table_markets"
                     ? "adaptive"
                     : ""
-                } ${index === 2 && type === "wallet-modal" ? "adaptive" : ""}`}
+                } ${index === 2 && type === "table_wallet" ? "adaptive" : ""}`}
               >
                 {item}
               </p>
             ))}
-            {type === "wallet-modal" && onClick && (
+            {type === "table_wallet" && onClick && (
               <div onClick={() => onClick(index)}>
                 <img className="remove" src={crossDelete} alt="cross" />
               </div>

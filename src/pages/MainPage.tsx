@@ -51,15 +51,15 @@ export default function MainPage() {
           <TableMain dataToShow={dataToShow} />
 
           <section className="pagination">
-            <Button size="sm" buttonType="next__prev" onClick={prevPage}>
+            <Button size="size_sm" buttonType="button_slide" onClick={prevPage}>
               Prev
             </Button>
             {[...Array(10).keys()].map((page: number) => {
               return (
                 <Button
                   key={page}
-                  size="sm"
-                  buttonType="pagination__item"
+                  size="size_sm"
+                  buttonType="button_pagination"
                   onClick={(e) => changePage(e)}
                   active={page + 1 === currentPage}
                 >
@@ -68,7 +68,7 @@ export default function MainPage() {
               );
             })}
             <div className="current__page">{currentPage}</div>
-            <Button size="sm" buttonType="next__prev" onClick={nextPage}>
+            <Button size="size_sm" buttonType="button_slide" onClick={nextPage}>
               Next
             </Button>
           </section>

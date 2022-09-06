@@ -21,10 +21,10 @@
 
     &__price {
         color: rgb(3, 171, 3);
-    }
 
-    .low {
-        color: red;
+        &_low {
+            color: red;
+        }
     }
 }
 
@@ -98,7 +98,7 @@ header {
         display: none;
     }
 
-    .content.header{
+    .content.header {
         padding: 10px;
     }
 }

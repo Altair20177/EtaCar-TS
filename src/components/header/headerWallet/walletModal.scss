@@ -12,6 +12,19 @@
     &-table {
         max-height: 350px;
     }
+
+    &__rules {
+        text-align: center;
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    &-pie {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
 }
 
 .table__header {
@@ -24,7 +37,7 @@
     cursor: pointer;
 }
 
-.delete {
+.form-delete {
     margin-top: 10px;
     display: flex;
     justify-content: center;
@@ -49,13 +62,6 @@
     font-size: 20px;
     font-weight: 700;
     padding: 30px 0;
-}
-
-.pie-container {
-    width: 280px;
-    height: 280px;
-    margin: 0 auto;
-    margin-top: 10px;
 }
 
 @media (max-width: 640px) {

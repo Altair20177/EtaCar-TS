@@ -9,9 +9,9 @@ export interface ButtonProps {
 }
 
 export default function Button({
-  size = "md",
+  size = "size_md",
   children = null,
-  buttonType = "pagination__item",
+  buttonType = "button_pagination",
   onClick,
   active = false,
 }: ButtonProps) {

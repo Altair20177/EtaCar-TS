@@ -55,12 +55,12 @@
         width: 110px;
         color: green;
 
-        .lower {
+        &_low {
             color: red;
         }
     }
 
-    img {
+    &__image {
         width: 20px;
         height: 20px;
         margin-left: 5px;
@@ -88,12 +88,12 @@
             font-size: 14px;
         }
     }
-    
-    .change__content{
+
+    .change__content {
         justify-content: center;
     }
 
-    .adaptive{
+    .adaptive {
         display: none;
     }
 
