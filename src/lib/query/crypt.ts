@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_CRYPTS = gql`
-  query {
-    getAllCrypts {
+  query getAllCrypts($offset: Int, $limit: Int) {
+    getAllCrypts(offset: $offset, limit: $limit) {
       id
       rank
       symbol

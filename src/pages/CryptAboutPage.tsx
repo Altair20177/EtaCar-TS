@@ -12,7 +12,7 @@ import Table from "../components/generic/table/Table";
 import { useQuery } from "@apollo/client";
 import { GET_CRYPT_ABOUT } from "../lib/query/crypt";
 
-export default function CryptAbout() {
+export default function CryptAboutPage() {
   const { cryptId } = useParams<{ cryptId: string }>();
   const dispatch = useAppDispatch();
   //const dataAboutCrypt = useAppSelector((state) => state.cryptPage);

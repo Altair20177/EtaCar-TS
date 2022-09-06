@@ -14,7 +14,12 @@ export default function Header() {
   const navigate = useNavigate();
   const walletData = useAppSelector((state) => state.walletPage);
 
-  const { data, loading, error } = useQuery(GET_ALL_CRYPTS);
+  const { data, loading, error } = useQuery(GET_ALL_CRYPTS, {
+    variables: {
+      offset: 0,
+      limit: 3,
+    },
+  });
 
   useEffect(() => {
     !loading && setTopCrypts(data.getAllCrypts);

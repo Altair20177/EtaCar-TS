@@ -69,7 +69,10 @@ export default function WalletModalLayout({
         <>
           <p className="rules">
             Minimal value - 0.00001. Maximal value -{" "}
-            {cryptToDelete.amount < 999999 ? cryptToDelete.amount : "999999"}.
+            {cryptToDelete.amount < 999999
+              ? Math.floor(cryptToDelete.amount * 10000) / 10000
+              : "999999"}
+            .
           </p>
           <form
             onSubmit={(e) => e.preventDefault()}

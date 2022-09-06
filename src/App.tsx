@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { addDataToTableAction } from "./lib/actions/tableActions";
 import Header from "./components/header/Header";
-import Main from "./pages/Main";
-import CryptAbout from "./pages/CryptAbout";
+import MainPage from "./pages/MainPage";
+import CryptAboutPage from "./pages/CryptAboutPage";
 import { addCryptToWallet } from "./lib/actions/walletActions";
 import { Crypt, CryptFromFetch } from "./types";
 import { useAppDispatch } from "./hooks";
@@ -12,7 +12,12 @@ import { GET_ALL_CRYPTS } from "./lib/query/crypt";
 
 function App() {
   const dispatch = useAppDispatch();
-  const { data, loading, error } = useQuery(GET_ALL_CRYPTS);
+  const { data, loading, error } = useQuery(GET_ALL_CRYPTS, {
+    variables: {
+      offset: 0,
+      limit: 100,
+    },
+  });
 
   function refreshLocalStorage(
     dataFromStorage: Array<Crypt>,
@@ -52,8 +57,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Main loading={loading} />} />
-        <Route path=":cryptId" element={<CryptAbout />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path=":cryptId" element={<CryptAboutPage />} />
       </Routes>
     </BrowserRouter>
   );

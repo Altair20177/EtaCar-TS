@@ -9,22 +9,27 @@ import Button from "../components/generic/button/Button";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_CRYPTS } from "../lib/query/crypt";
 
-export default function Main({ loading }: { loading: boolean }) {
-  const { data, error } = useQuery(GET_ALL_CRYPTS);
+export default function MainPage() {
+  const [offset, setOffset] = useState<number>(0);
+
+  const { data, loading, error } = useQuery(GET_ALL_CRYPTS, {
+    variables: {
+      limit: 10,
+      offset: offset,
+    },
+  });
 
   const [dataToShow, setDataToShow] = useState<Array<CryptFromFetch>>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    const startIndex = currentPage === 1 ? 0 : (currentPage - 1) * 10;
+    !loading && setDataToShow(data.getAllCrypts);
 
-    !loading &&
-      setDataToShow(data.getAllCrypts.slice(startIndex, startIndex + 10));
-  }, [currentPage, data, loading]);
+    setOffset((currentPage - 1) * 10);
+  }, [currentPage, loading, data]);
 
   function nextPage() {
-    currentPage !== Math.ceil(data.getAllCrypts.length / 10) &&
-      setCurrentPage(+currentPage + 1);
+    currentPage !== 10 && setCurrentPage(+currentPage + 1);
   }
 
   function prevPage() {
@@ -49,21 +54,19 @@ export default function Main({ loading }: { loading: boolean }) {
             <Button size="sm" buttonType="next__prev" onClick={prevPage}>
               Prev
             </Button>
-            {[...Array(Math.ceil(data.getAllCrypts.length / 10)).keys()].map(
-              (page: number) => {
-                return (
-                  <Button
-                    key={page}
-                    size="sm"
-                    buttonType="pagination__item"
-                    onClick={(e) => changePage(e)}
-                    active={page + 1 === currentPage}
-                  >
-                    {page + 1}
-                  </Button>
-                );
-              }
-            )}
+            {[...Array(10).keys()].map((page: number) => {
+              return (
+                <Button
+                  key={page}
+                  size="sm"
+                  buttonType="pagination__item"
+                  onClick={(e) => changePage(e)}
+                  active={page + 1 === currentPage}
+                >
+                  {page + 1}
+                </Button>
+              );
+            })}
             <div className="current__page">{currentPage}</div>
             <Button size="sm" buttonType="next__prev" onClick={nextPage}>
               Next
