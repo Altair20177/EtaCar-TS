@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { addDataToTableAction } from "./lib/actions/tableActions";
 import Header from "./components/header/Header";
@@ -8,50 +8,64 @@ import { addCryptToWallet } from "./lib/actions/walletActions";
 import { Crypt, CryptFromFetch } from "./types";
 import { useAppDispatch } from "./hooks";
 import { useQuery } from "@apollo/client";
-import { GET_ALL_CRYPTS } from "./lib/query/crypt";
+import { GET_FRESH_DATA_ABOUT_WALLET } from "./lib/query/crypt";
 
 function App() {
   const dispatch = useAppDispatch();
-  const { data, loading, error } = useQuery(GET_ALL_CRYPTS, {
+  const [ids, setIds] = useState<string>("");
+
+  const {
+    data: freshCrypts,
+    loading,
+    error,
+  } = useQuery(GET_FRESH_DATA_ABOUT_WALLET, {
     variables: {
-      offset: 0,
-      limit: 100,
+      ids: ids,
     },
   });
 
-  function refreshLocalStorage(
-    dataFromStorage: Array<Crypt>,
-    dataFromFetch: Array<CryptFromFetch>
-  ) {
+  function refreshLocalStorage(dataFromStorage: Crypt[]) {
+    const idsStr = dataFromStorage.reduce(
+      (prev: string, curr: Crypt) => prev + "," + curr.id,
+      ""
+    );
+
+    setIds(idsStr.slice(1));
     const newArr: Array<Crypt> = [];
 
-    dataFromFetch.forEach((itemFromFetch) => {
-      dataFromStorage.forEach((itemFromStorage) => {
-        if (itemFromFetch.id === itemFromStorage.id) {
-          const obj = { ...itemFromStorage };
+    freshCrypts.getFreshDataAboutWallet.forEach(
+      (itemFromFetch: CryptFromFetch) => {
+        dataFromStorage.forEach((itemFromStorage: Crypt) => {
+          if (itemFromFetch.id === itemFromStorage.id) {
+            const obj = { ...itemFromStorage };
 
-          obj.change = itemFromFetch.changePercent24Hr;
-          obj.price = itemFromFetch.priceUsd;
+            obj.change = itemFromFetch.changePercent24Hr;
+            obj.price = itemFromFetch.priceUsd;
 
-          newArr.push(obj);
-        }
-      });
-    });
+            newArr.push(obj);
+          }
+        });
+      }
+    );
     localStorage.setItem("wallet", JSON.stringify(newArr));
   }
 
   useEffect(() => {
-    !loading && dispatch(addDataToTableAction(data.getAllCrypts));
+    //!loading && dispatch(addDataToTableAction(data.getAllCrypts));
 
     const storage = localStorage.getItem("wallet");
 
-    if (storage && !loading) {
+    storage && !loading && refreshLocalStorage(JSON.parse(storage));
+  }, [freshCrypts, loading]);
+
+  useEffect(() => {
+    const storage = localStorage.getItem("wallet");
+
+    storage &&
       JSON.parse(storage).forEach((item: Crypt) =>
         dispatch(addCryptToWallet(item))
       );
-      refreshLocalStorage(JSON.parse(storage), data.getAllCrypts);
-    }
-  }, [data, loading]);
+  }, []);
 
   return (
     <BrowserRouter>

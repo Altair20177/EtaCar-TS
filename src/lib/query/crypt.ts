@@ -49,3 +49,16 @@ export const GET_PAGES_AMOUNT = gql`
     getPagesAmount
   }
 `;
+
+export const GET_FRESH_DATA_ABOUT_WALLET = gql`
+  query getFreshDataAboutWallet($ids: String) {
+    getFreshDataAboutWallet(ids: $ids) {
+      id
+      rank
+      symbol
+      name
+      priceUsd
+      changePercent24Hr
+    }
+  }
+`;

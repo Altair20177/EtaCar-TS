@@ -3,13 +3,13 @@ import "../components/main/main.scss";
 
 import spinner from "../components/generic/icons/spinner.svg";
 import TableMain from "../components/main/mainTable/TableMain";
-import { CryptFromFetch } from "../types";
 import Button from "../components/generic/button/Button";
 
 import { useQuery } from "@apollo/client";
 import { GET_ALL_CRYPTS, GET_PAGES_AMOUNT } from "../lib/query/crypt";
 
 export default function MainPage() {
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [offset, setOffset] = useState<number>(0);
 
   const {
@@ -26,13 +26,9 @@ export default function MainPage() {
   const { data: pagesAmount, loading: pagesLoading } =
     useQuery(GET_PAGES_AMOUNT);
 
-  const [dataToShow, setDataToShow] = useState<Array<CryptFromFetch>>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
   useEffect(() => {
-    !loading && setDataToShow(allCrypts.getAllCrypts);
     setOffset((currentPage - 1) * 10);
-  }, [currentPage, loading, allCrypts]);
+  }, [currentPage]);
 
   function nextPage() {
     currentPage !== Math.ceil(pagesAmount.getPagesAmount / 10) &&
@@ -55,7 +51,7 @@ export default function MainPage() {
         <img className="preloader__item" src={spinner} alt="spinner" />
       ) : (
         <div>
-          <TableMain dataToShow={dataToShow} />
+          <TableMain dataToShow={allCrypts.getAllCrypts} />
 
           <section className="pagination">
             <Button size="size_sm" buttonType="button_slide" onClick={prevPage}>
