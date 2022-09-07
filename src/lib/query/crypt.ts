@@ -43,3 +43,9 @@ export const GET_CRYPT_ABOUT = gql`
     }
   }
 `;
+
+export const GET_PAGES_AMOUNT = gql`
+  query {
+    getPagesAmount
+  }
+`;

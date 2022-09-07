@@ -7,29 +7,36 @@ import { CryptFromFetch } from "../types";
 import Button from "../components/generic/button/Button";
 
 import { useQuery } from "@apollo/client";
-import { GET_ALL_CRYPTS } from "../lib/query/crypt";
+import { GET_ALL_CRYPTS, GET_PAGES_AMOUNT } from "../lib/query/crypt";
 
 export default function MainPage() {
   const [offset, setOffset] = useState<number>(0);
 
-  const { data, loading, error } = useQuery(GET_ALL_CRYPTS, {
+  const {
+    data: allCrypts,
+    loading,
+    error,
+  } = useQuery(GET_ALL_CRYPTS, {
     variables: {
       limit: 10,
       offset: offset,
     },
   });
 
+  const { data: pagesAmount, loading: pagesLoading } =
+    useQuery(GET_PAGES_AMOUNT);
+
   const [dataToShow, setDataToShow] = useState<Array<CryptFromFetch>>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    !loading && setDataToShow(data.getAllCrypts);
-
+    !loading && setDataToShow(allCrypts.getAllCrypts);
     setOffset((currentPage - 1) * 10);
-  }, [currentPage, loading, data]);
+  }, [currentPage, loading, allCrypts]);
 
   function nextPage() {
-    currentPage !== 10 && setCurrentPage(+currentPage + 1);
+    currentPage !== Math.ceil(pagesAmount.getPagesAmount / 10) &&
+      setCurrentPage(+currentPage + 1);
   }
 
   function prevPage() {
@@ -44,7 +51,7 @@ export default function MainPage() {
   return (
     <main className="content main">
       <h2 className="title">All Cryptocurrency</h2>
-      {loading ? (
+      {loading || pagesLoading ? (
         <img className="preloader__item" src={spinner} alt="spinner" />
       ) : (
         <div>
@@ -54,19 +61,21 @@ export default function MainPage() {
             <Button size="size_sm" buttonType="button_slide" onClick={prevPage}>
               Prev
             </Button>
-            {[...Array(10).keys()].map((page: number) => {
-              return (
-                <Button
-                  key={page}
-                  size="size_sm"
-                  buttonType="button_pagination"
-                  onClick={(e) => changePage(e)}
-                  active={page + 1 === currentPage}
-                >
-                  {page + 1}
-                </Button>
-              );
-            })}
+            {[...Array(Math.ceil(pagesAmount.getPagesAmount / 10)).keys()].map(
+              (page: number) => {
+                return (
+                  <Button
+                    key={page}
+                    size="size_sm"
+                    buttonType="button_pagination"
+                    onClick={(e) => changePage(e)}
+                    active={page + 1 === currentPage}
+                  >
+                    {page + 1}
+                  </Button>
+                );
+              }
+            )}
             <div className="current__page">{currentPage}</div>
             <Button size="size_sm" buttonType="button_slide" onClick={nextPage}>
               Next
