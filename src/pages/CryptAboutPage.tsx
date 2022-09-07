@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { addDataAboutCrypt } from "../lib/actions/cryptAboutActions";
 import spinner from "../components/generic/icons/spinner.svg";
 import "../components/crypt/cryptAbout.scss";
 import Graph from "../components/crypt/Graph";
 import AddCryptModal from "../components/crypt/AddCryptModal";
 import { CryptMarket, CryptFromFetch, DataAboutCrypt } from "../types";
-import { useAppDispatch, useAppSelector } from "../hooks";
 import Button from "../components/generic/button/Button";
 import Table from "../components/generic/table/Table";
 import { useQuery } from "@apollo/client";
@@ -14,8 +12,6 @@ import { GET_CRYPT_ABOUT } from "../lib/query/crypt";
 
 export default function CryptAboutPage() {
   const { cryptId } = useParams<{ cryptId: string }>();
-  const dispatch = useAppDispatch();
-  //const dataAboutCrypt = useAppSelector((state) => state.cryptPage);
 
   const { data, loading, error } = useQuery(GET_CRYPT_ABOUT, {
     variables: {
@@ -30,10 +26,6 @@ export default function CryptAboutPage() {
   );
 
   useEffect(() => {
-    /*     if (!loading) {
-      dispatch(addDataAboutCrypt(data?.getCryptAbout));
-      setCrypt(data?.getCryptAbout);
-    } */
     !loading && setCrypt(data?.getCryptAbout);
   }, [cryptId, loading]);
 

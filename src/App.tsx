@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { addDataToTableAction } from "./lib/actions/tableActions";
 import Header from "./components/header/Header";
 import MainPage from "./pages/MainPage";
 import CryptAboutPage from "./pages/CryptAboutPage";
@@ -51,8 +50,6 @@ function App() {
   }
 
   useEffect(() => {
-    //!loading && dispatch(addDataToTableAction(data.getAllCrypts));
-
     const storage = localStorage.getItem("wallet");
 
     storage && !loading && refreshLocalStorage(JSON.parse(storage));
