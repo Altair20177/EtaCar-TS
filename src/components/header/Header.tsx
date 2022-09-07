@@ -1,6 +1,6 @@
 import "./header.scss";
-import wallet from "./headerIcons/wallet.svg";
-import logo from "./headerIcons/neo.svg";
+import wallet from "./icons/wallet.svg";
+import logo from "./icons/neo.svg";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import WalletModal from "./wallet/WalletModal";
