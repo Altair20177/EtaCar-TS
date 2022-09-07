@@ -4,7 +4,7 @@ import cross from "../../generic/icons/cross.svg";
 import { Crypt } from "../../../types";
 import Button from "../../generic/button/Button";
 import Table from "../../generic/table/Table";
-import PieChart from "../headerPieChart/PieChart";
+import PieChart from "../pieChart/PieChart";
 
 export interface WalletModalLayoutProps {
   walletData: Array<Crypt>;

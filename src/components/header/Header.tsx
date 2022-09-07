@@ -3,7 +3,7 @@ import wallet from "./headerIcons/wallet.svg";
 import logo from "./headerIcons/neo.svg";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import WalletModal from "./headerWallet/WalletModal";
+import WalletModal from "./wallet/WalletModal";
 import { Crypt, CryptFromFetch } from "../../types";
 import { useAppSelector } from "../../hooks";
 

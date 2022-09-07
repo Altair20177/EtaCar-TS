@@ -11,8 +11,13 @@ export interface TableProps {
   fontWeight?: string;
 }
 
+export enum TableTypes {
+  table_markets = "table_markets",
+  table_wallet = "table_wallet",
+}
+
 export default function Table({
-  type = "table_markets",
+  type = TableTypes.table_markets,
   headers = [],
   lines = [],
   onClick,
@@ -28,10 +33,15 @@ export default function Table({
             <p
               key={index}
               className={`table__item ${
-                (index === 3 || index === 4) && type === "table_markets"
+                (index === 3 || index === 4) &&
+                type === TableTypes.table_markets
                   ? "adaptive"
                   : ""
-              } ${index === 2 && type === "table_wallet" ? "adaptive" : ""}`}
+              } ${
+                index === 2 && type === TableTypes.table_wallet
+                  ? "adaptive"
+                  : ""
+              }`}
             >
               {header}
             </p>
@@ -48,15 +58,20 @@ export default function Table({
               <p
                 key={index}
                 className={`table__item ${
-                  (index === 3 || index === 4) && type === "table_markets"
+                  (index === 3 || index === 4) &&
+                  type === TableTypes.table_markets
                     ? "adaptive"
                     : ""
-                } ${index === 2 && type === "table_wallet" ? "adaptive" : ""}`}
+                } ${
+                  index === 2 && type === TableTypes.table_wallet
+                    ? "adaptive"
+                    : ""
+                }`}
               >
                 {item}
               </p>
             ))}
-            {type === "table_wallet" && onClick && (
+            {type === TableTypes.table_wallet && onClick && (
               <div onClick={() => onClick(index)}>
                 <img className="remove" src={crossDelete} alt="cross" />
               </div>
