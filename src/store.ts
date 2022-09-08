@@ -1,18 +1,3 @@
-/* import { configureStore } from "@reduxjs/toolkit";
-import { cryptAboutReducer } from "./lib/reducers/cryptAboutReducer";
-import { walletReducer } from "./lib/reducers/walletReducer";
-
-export const store = configureStore({
-  reducer: {
-    cryptPage: cryptAboutReducer,
-    walletPage: walletReducer,
-  },
-});
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
- */
-
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { rootReducer } from "./rootReducer";
 import thunk from "redux-thunk";

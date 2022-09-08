@@ -110,13 +110,7 @@ export default function WalletModalLayout({
           />
           {walletData?.length !== 0 && (
             <div className="modal-pie">
-              <PieChart
-                data={walletData}
-                //width={200}
-                //height={200}
-                //innerRadius={0}
-                //outerRadius={100}
-              />
+              <PieChart data={walletData} />
             </div>
           )}
         </div>
