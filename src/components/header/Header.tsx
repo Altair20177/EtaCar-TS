@@ -9,6 +9,7 @@ import { useAppSelector } from "../../hooks";
 
 import { useQuery } from "@apollo/client";
 import { GET_ALL_CRYPTS } from "../../lib/query/crypt";
+import Skeleton from "react-loading-skeleton";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -68,14 +69,16 @@ export default function Header() {
                   -{" "}
                   <span
                     className={`crypto__price ${
-                      topCrypts[index]?.changePercent24Hr < 0 ? "crypto__price_low" : ""
+                      topCrypts[index]?.changePercent24Hr < 0
+                        ? "crypto__price_low"
+                        : ""
                     }`}
                   >
                     {Math.floor(+topCrypts[index]?.priceUsd * 100) / 100}$
                   </span>
                 </>
               ) : (
-                "---"
+                <Skeleton width={150} height={25} />
               )}
             </li>
           ))}
