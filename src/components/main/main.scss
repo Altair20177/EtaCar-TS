@@ -78,6 +78,14 @@
     transform: translate(-50%, -50%);
 }
 
+.skeleton {
+    margin: 3px 0;
+
+    &-pagination{
+        margin-left: 10px;
+    }
+}
+
 @media (max-width: 640px) {
     .crypts {
         width: 100%;
