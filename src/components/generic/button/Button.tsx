@@ -1,7 +1,8 @@
 import { ButtonSizes, ButtonTypes } from "../../../types";
 import "./button.scss";
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: string;
   buttonType?: string;
   children?: React.ReactNode;

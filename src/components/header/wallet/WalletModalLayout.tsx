@@ -87,6 +87,7 @@ export default function WalletModalLayout({
               placeholder={`Remove ${cryptToDelete.name}`}
             />
             <Button
+              type="submit"
               onClick={deleteCrypt}
               buttonType={ButtonTypes.button_delete}
               size={ButtonSizes.size_sm}

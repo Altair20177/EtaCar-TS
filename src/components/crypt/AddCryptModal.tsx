@@ -95,7 +95,7 @@ export default function AddCryptModal({
         <p className="modal__about">
           {cryptAbout?.name} price - {(+cryptAbout?.priceUsd).toFixed(5)}$
         </p>
-        <form action="submit">
+        <form action="submit" onSubmit={(e) => e.preventDefault()}>
           <input
             className={`modal__input ${error ? "error" : ""}`}
             type="text"
@@ -106,6 +106,7 @@ export default function AddCryptModal({
           <p className="rules">Min value - 0.00001. Max value - 999999</p>
           <div className="button-container">
             <Button
+              type="submit"
               buttonType={ButtonTypes.button_action}
               size={ButtonSizes.size_lg}
               onClick={(e) => onSubmit(e)}

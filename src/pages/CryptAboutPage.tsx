@@ -116,6 +116,7 @@ export default function CryptAboutPage() {
                 </span>
               </li>
               <Button
+                type="button"
                 buttonType={ButtonTypes.button_action}
                 onClick={addCryptToWallet}
               >

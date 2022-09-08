@@ -59,6 +59,7 @@ export default function MainPage() {
       {!pagesLoading ? (
         <section className="pagination">
           <Button
+            type="button"
             size={ButtonSizes.size_sm}
             buttonType={ButtonTypes.button_slide}
             onClick={prevPage}
@@ -69,6 +70,7 @@ export default function MainPage() {
             (page: number) => {
               return (
                 <Button
+                  type="button"
                   key={page}
                   size={ButtonSizes.size_sm}
                   buttonType={ButtonTypes.button_pagination}
@@ -82,6 +84,7 @@ export default function MainPage() {
           )}
           <div className="current__page">{currentPage}</div>
           <Button
+            type="button"
             size={ButtonSizes.size_sm}
             buttonType={ButtonTypes.button_slide}
             onClick={nextPage}

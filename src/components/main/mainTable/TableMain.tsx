@@ -72,6 +72,7 @@ export default function TableMain({ dataToShow, pageWidth }: TableProps) {
                   </div>
                 </div>
                 <Button
+                  type="button"
                   onClick={(e) => addCryptToWallet(e, crypt)}
                   buttonType={ButtonTypes.button_action}
                 >
