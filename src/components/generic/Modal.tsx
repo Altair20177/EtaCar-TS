@@ -1,6 +1,6 @@
 import "./cryptModal.scss";
 
-export interface ModalProps {
+export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   setIsPopupOpen: (flag: boolean) => void;
   isPopupOpen: boolean;
   children: React.ReactNode;

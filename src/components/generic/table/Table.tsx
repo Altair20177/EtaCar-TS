@@ -2,24 +2,24 @@ import "./table.scss";
 import crossDelete from "./crossDelete.svg";
 import { TableTypes } from "../../../types";
 
-export interface TableProps {
-  type: string;
+export interface TableProps extends React.HTMLAttributes<HTMLDivElement> {
+  type: TableTypes.table_markets | TableTypes.table_wallet;
   headers: string[];
   lines: string[][];
-  onClick?: undefined | ((num: number) => void);
-  borderBottomColor?: string;
-  lineHeight?: string;
-  fontWeight?: string;
+  onCustomClick?: (num: number) => void;
+  borderBottomColor?: "border_black" | "border_gray";
+  lineHeight?: "height_low" | "height_high" | "height_veryhigh";
+  fontWeight?: "weight_normal" | "weight_bold";
 }
 
 export default function Table({
   type = TableTypes.table_markets,
   headers = [],
   lines = [],
-  onClick,
-  borderBottomColor = "",
-  lineHeight = "",
-  fontWeight = "",
+  onCustomClick,
+  borderBottomColor = "border_black",
+  lineHeight = "height_high",
+  fontWeight = "weight_normal",
 }: TableProps) {
   return (
     <div className="table">
@@ -67,8 +67,8 @@ export default function Table({
                 {item}
               </p>
             ))}
-            {type === TableTypes.table_wallet && onClick && (
-              <div onClick={() => onClick(index)}>
+            {type === TableTypes.table_wallet && onCustomClick && (
+              <div onClick={() => onCustomClick(index)}>
                 <img className="remove" src={crossDelete} alt="cross" />
               </div>
             )}

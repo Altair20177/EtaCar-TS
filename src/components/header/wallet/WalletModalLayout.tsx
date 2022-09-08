@@ -105,7 +105,7 @@ export default function WalletModalLayout({
             type={TableTypes.table_wallet}
             headers={createDataForTableWallet().headers}
             lines={createDataForTableWallet(walletData).lines}
-            onClick={deleteCryptRequest}
+            onCustomClick={deleteCryptRequest}
             fontWeight="weight_normal"
             lineHeight="height_low"
           />
