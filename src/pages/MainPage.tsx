@@ -8,7 +8,7 @@ import { useQuery } from "@apollo/client";
 import { GET_ALL_CRYPTS, GET_PAGES_AMOUNT } from "../lib/query/crypt";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { ButtonTypes } from "../types";
+import { ButtonSizes, ButtonTypes } from "../types";
 
 export default function MainPage() {
   const pageWidth = document.documentElement.scrollWidth;
@@ -59,7 +59,7 @@ export default function MainPage() {
       {!pagesLoading ? (
         <section className="pagination">
           <Button
-            size="size_sm"
+            size={ButtonSizes.size_sm}
             buttonType={ButtonTypes.button_slide}
             onClick={prevPage}
           >
@@ -70,7 +70,7 @@ export default function MainPage() {
               return (
                 <Button
                   key={page}
-                  size="size_sm"
+                  size={ButtonSizes.size_sm}
                   buttonType={ButtonTypes.button_pagination}
                   onClick={(e) => changePage(e)}
                   active={page + 1 === currentPage}
@@ -82,7 +82,7 @@ export default function MainPage() {
           )}
           <div className="current__page">{currentPage}</div>
           <Button
-            size="size_sm"
+            size={ButtonSizes.size_sm}
             buttonType={ButtonTypes.button_slide}
             onClick={nextPage}
           >

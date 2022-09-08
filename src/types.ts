@@ -66,6 +66,12 @@ export enum ButtonTypes {
   button_slide = "button_slide",
 }
 
+export enum ButtonSizes {
+  size_md = "size_md",
+  size_sm = "size_sm",
+  size_lg = "size_lg",
+}
+
 export enum TableTypes {
   table_markets = "table_markets",
   table_wallet = "table_wallet",

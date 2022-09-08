@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Modal from "../generic/Modal";
 import { addCryptToWallet } from "../../lib/actions/walletActions";
 import checkInputSymbol from "../generic/checkInputSymbol";
-import { ButtonTypes, Crypt, CryptFromFetch } from "../../types";
+import { ButtonSizes, ButtonTypes, Crypt, CryptFromFetch } from "../../types";
 import { useAppDispatch } from "../../hooks";
 import Button from "../generic/button/Button";
 
@@ -107,7 +107,7 @@ export default function AddCryptModal({
           <div className="button-container">
             <Button
               buttonType={ButtonTypes.button_action}
-              size="size_lg"
+              size={ButtonSizes.size_lg}
               onClick={(e) => onSubmit(e)}
             >
               Add to Wallet
