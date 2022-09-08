@@ -7,7 +7,7 @@ import arrowDown from "./mainTableIcons/arrowDown.svg";
 import { useNavigate } from "react-router";
 import AddCryptModal from "../../crypt/AddCryptModal";
 import { useState } from "react";
-import { CryptFromFetch } from "../../../types";
+import { ButtonTypes, CryptFromFetch } from "../../../types";
 import Button from "../../generic/button/Button";
 
 export interface TableProps {
@@ -73,7 +73,7 @@ export default function TableMain({ dataToShow, pageWidth }: TableProps) {
                 </div>
                 <Button
                   onClick={(e) => addCryptToWallet(e, crypt)}
-                  buttonType="button_action"
+                  buttonType={ButtonTypes.button_action}
                 >
                   Add
                 </Button>

@@ -1,5 +1,6 @@
 import "./table.scss";
 import crossDelete from "./crossDelete.svg";
+import { TableTypes } from "../../../types";
 
 export interface TableProps {
   type: string;
@@ -9,11 +10,6 @@ export interface TableProps {
   borderBottomColor?: string;
   lineHeight?: string;
   fontWeight?: string;
-}
-
-export enum TableTypes {
-  table_markets = "table_markets",
-  table_wallet = "table_wallet",
 }
 
 export default function Table({

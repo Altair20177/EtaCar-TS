@@ -1,3 +1,4 @@
+import { ButtonTypes } from "../../../types";
 import "./button.scss";
 
 export interface ButtonProps {
@@ -11,7 +12,7 @@ export interface ButtonProps {
 export default function Button({
   size = "size_md",
   children = null,
-  buttonType = "button_pagination",
+  buttonType = ButtonTypes.button_pagination,
   onClick,
   active = false,
 }: ButtonProps) {

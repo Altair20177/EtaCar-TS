@@ -1,7 +1,7 @@
 import "./walletModal.scss";
 
 import cross from "../../generic/icons/cross.svg";
-import { Crypt } from "../../../types";
+import { ButtonTypes, Crypt, TableTypes } from "../../../types";
 import Button from "../../generic/button/Button";
 import Table from "../../generic/table/Table";
 import PieChart from "../pieChart/PieChart";
@@ -88,7 +88,7 @@ export default function WalletModalLayout({
             />
             <Button
               onClick={deleteCrypt}
-              buttonType="button_delete"
+              buttonType={ButtonTypes.button_delete}
               size="size_sm"
             >
               Remove
@@ -101,7 +101,7 @@ export default function WalletModalLayout({
       ) : (
         <div className="modal-body">
           <Table
-            type="table_wallet"
+            type={TableTypes.table_wallet}
             headers={createDataForTableWallet().headers}
             lines={createDataForTableWallet(walletData).lines}
             onClick={deleteCryptRequest}

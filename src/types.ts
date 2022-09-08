@@ -58,3 +58,15 @@ export type State = {
   cryptPage: DataAboutCrypt;
   walletPage: Array<Crypt>;
 };
+
+export enum ButtonTypes {
+  button_pagination = "button_pagination",
+  button_delete = "button_delete",
+  button_action = "button_action",
+  button_slide = "button_slide",
+}
+
+export enum TableTypes {
+  table_markets = "table_markets",
+  table_wallet = "table_wallet",
+}

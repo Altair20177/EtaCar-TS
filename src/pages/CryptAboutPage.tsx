@@ -4,7 +4,13 @@ import spinner from "../components/generic/icons/spinner.svg";
 import "../components/crypt/cryptAbout.scss";
 import Graph from "../components/crypt/Graph";
 import AddCryptModal from "../components/crypt/AddCryptModal";
-import { CryptMarket, CryptFromFetch, DataAboutCrypt } from "../types";
+import {
+  CryptMarket,
+  CryptFromFetch,
+  DataAboutCrypt,
+  ButtonTypes,
+  TableTypes,
+} from "../types";
 import Button from "../components/generic/button/Button";
 import Table from "../components/generic/table/Table";
 import { useQuery } from "@apollo/client";
@@ -109,7 +115,10 @@ export default function CryptAboutPage() {
                   {+crypt.about.marketCapUsd}$
                 </span>
               </li>
-              <Button buttonType="button_action" onClick={addCryptToWallet}>
+              <Button
+                buttonType={ButtonTypes.button_action}
+                onClick={addCryptToWallet}
+              >
                 Add to Wallet
               </Button>
             </ul>
@@ -121,7 +130,7 @@ export default function CryptAboutPage() {
             <h2 className="content__title content__title_sm">TOP-10 Markets</h2>
 
             <Table
-              type="table_markets"
+              type={TableTypes.table_markets}
               headers={createDataForTableMain().headers}
               lines={createDataForTableMain(crypt.markets).lines}
               borderBottomColor="border_black"
