@@ -7,9 +7,16 @@ export interface TableProps extends React.HTMLAttributes<HTMLDivElement> {
   headers: string[];
   lines: string[][];
   onCustomClick?: (num: number) => void;
-  borderBottomColor?: "border_black" | "border_gray";
-  lineHeight?: "height_low" | "height_high" | "height_veryhigh";
-  fontWeight?: "weight_normal" | "weight_bold";
+  borderBottomColor?: "table__border_black" | "table__border_gray";
+  lineHeight?: "table__height_low" | "table__height_high" | "table__height_veryhigh";
+  fontWeight?: "table__weight_normal" | "table__weight_bold";
+}
+
+export enum IndexsConsts {
+  WALLET_PRICE = 2,
+
+  MARKET_BASE = 3,
+  MARKET_QUOTE = 4,
 }
 
 export default function Table({
@@ -17,28 +24,33 @@ export default function Table({
   headers = [],
   lines = [],
   onCustomClick,
-  borderBottomColor = "border_black",
-  lineHeight = "height_high",
-  fontWeight = "weight_normal",
+  borderBottomColor = "table__border_black",
+  lineHeight = "table__height_high",
+  fontWeight = "table__weight_normal",
 }: TableProps) {
+  function isAdaptive(tableType: TableTypes, index: number) {
+    switch (tableType) {
+      case TableTypes.table_markets:
+        if (
+          index === IndexsConsts.MARKET_BASE ||
+          index === IndexsConsts.MARKET_QUOTE
+        )
+          return "adaptive";
+        break;
+      case TableTypes.table_wallet:
+        if (index === IndexsConsts.WALLET_PRICE) return "adaptive";
+        break;
+      default:
+        return "";
+    }
+  }
+
   return (
     <div className="table">
       <ul>
         <li className={`table-header ${lineHeight} ${type}`}>
           {headers.map((header, index) => (
-            <p
-              key={index}
-              className={`table__item ${
-                (index === 3 || index === 4) &&
-                type === TableTypes.table_markets
-                  ? "adaptive"
-                  : ""
-              } ${
-                index === 2 && type === TableTypes.table_wallet
-                  ? "adaptive"
-                  : ""
-              }`}
-            >
+            <p key={index} className={`table__item ${isAdaptive(type, index)}`}>
               {header}
             </p>
           ))}
@@ -53,16 +65,7 @@ export default function Table({
             {line.map((item, index) => (
               <p
                 key={index}
-                className={`table__item ${
-                  (index === 3 || index === 4) &&
-                  type === TableTypes.table_markets
-                    ? "adaptive"
-                    : ""
-                } ${
-                  index === 2 && type === TableTypes.table_wallet
-                    ? "adaptive"
-                    : ""
-                }`}
+                className={`table__item ${isAdaptive(type, index)}`}
               >
                 {item}
               </p>

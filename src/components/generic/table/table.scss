@@ -19,34 +19,34 @@
         text-align: center;
         height: 40px;
     }
-}
 
-.border_black {
-    border-bottom: 1px solid black;
-}
+    &__border_black {
+        border-bottom: 1px solid black;
+    }
 
-.border_gray {
-    border-bottom: 1px solid rgb(205, 205, 205);
-}
+    &__border_gray {
+        border-bottom: 1px solid rgb(205, 205, 205);
+    }
 
-.weight_normal {
-    font-weight: normal;
-}
+    &__weight_normal {
+        font-weight: normal;
+    }
 
-.weight_bold {
-    font-weight: 600;
-}
+    &__weight_bold {
+        font-weight: 600;
+    }
 
-.height_low {
-    height: 30px;
-}
+    &__height_low {
+        height: 35px;
+    }
 
-.height_high {
-    height: 40px;
-}
+    &__height_high {
+        height: 40px;
+    }
 
-.height_veryhigh {
-    height: 50px;
+    &__height_veryhigh {
+        height: 50px;
+    }
 }
 
 .table_markets {
