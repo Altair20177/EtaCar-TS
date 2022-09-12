@@ -47,17 +47,17 @@
     &_height_veryhigh {
         height: 50px;
     }
-}
 
-.table_type_markets {
-    grid-template-columns: 5% 30% 25% 20% 20%;
-}
+    &_type_markets {
+        grid-template-columns: 5% 30% 25% 20% 20%;
+    }
 
-.table_type_wallet {
-    grid-template-columns: 24% 12% 26% 26% 12%;
-    overflow-y: auto;
-    max-height: 155px;
-    margin-bottom: 0;
+    &_type_wallet {
+        grid-template-columns: 24% 12% 26% 26% 12%;
+        overflow-y: auto;
+        max-height: 155px;
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 640px) {
