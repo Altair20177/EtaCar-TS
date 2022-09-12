@@ -106,8 +106,8 @@ export default function WalletModalLayout({
             headers={createDataForTableWallet().headers}
             lines={createDataForTableWallet(walletData).lines}
             onCustomClick={deleteCryptRequest}
-            fontWeight="table__weight_normal"
-            lineHeight="table__height_low"
+            fontWeight="table_weight_normal"
+            lineHeight="table_height_low"
           />
           {walletData?.length !== 0 && (
             <div className="modal-pie">

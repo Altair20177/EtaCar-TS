@@ -20,40 +20,40 @@
         height: 40px;
     }
 
-    &__border_black {
+    &_border_black {
         border-bottom: 1px solid black;
     }
 
-    &__border_gray {
+    &_border_gray {
         border-bottom: 1px solid rgb(205, 205, 205);
     }
 
-    &__weight_normal {
+    &_weight_normal {
         font-weight: normal;
     }
 
-    &__weight_bold {
+    &_weight_bold {
         font-weight: 600;
     }
 
-    &__height_low {
+    &_height_low {
         height: 35px;
     }
 
-    &__height_high {
+    &_height_high {
         height: 40px;
     }
 
-    &__height_veryhigh {
+    &_height_veryhigh {
         height: 50px;
     }
 }
 
-.table_markets {
+.table_type_markets {
     grid-template-columns: 5% 30% 25% 20% 20%;
 }
 
-.table_wallet {
+.table_type_wallet {
     grid-template-columns: 24% 12% 26% 26% 12%;
     overflow-y: auto;
     max-height: 155px;
@@ -65,11 +65,11 @@
         display: none;
     }
 
-    .table_markets {
+    .table_type_markets {
         grid-template-columns: 20% 40% 40%;
     }
 
-    .table_wallet {
+    .table_type_wallet {
         grid-template-columns: 27% 15% 40% 18%;
         font-size: 16px;
     }

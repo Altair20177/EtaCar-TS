@@ -60,19 +60,19 @@ export type State = {
 };
 
 export enum ButtonTypes {
-  button_pagination = "button_pagination",
-  button_delete = "button_delete",
-  button_action = "button_action",
-  button_slide = "button_slide",
+  button_pagination = "button__wrapper_type_pagination",
+  button_delete = "button__wrapper_type_delete",
+  button_action = "button__wrapper_type_action",
+  button_slide = "button__wrapper_type_slide",
 }
 
 export enum ButtonSizes {
-  size_md = "size_md",
-  size_sm = "size_sm",
-  size_lg = "size_lg",
+  size_md = "button__wrapper_size_md",
+  size_sm = "button__wrapper_size_sm",
+  size_lg = "button__wrapper_size_lg",
 }
 
 export enum TableTypes {
-  table_markets = "table_markets",
-  table_wallet = "table_wallet",
+  table_markets = "table_type_markets",
+  table_wallet = "table_type_wallet",
 }

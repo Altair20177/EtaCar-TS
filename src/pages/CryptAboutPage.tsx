@@ -134,7 +134,7 @@ export default function CryptAboutPage() {
               type={TableTypes.table_markets}
               headers={createDataForTableMain().headers}
               lines={createDataForTableMain(crypt.markets).lines}
-              borderBottomColor="table__border_black"
+              borderBottomColor="table_border_black"
             />
           </div>
         </div>

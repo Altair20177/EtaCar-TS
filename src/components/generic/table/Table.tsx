@@ -7,9 +7,9 @@ export interface TableProps extends React.HTMLAttributes<HTMLDivElement> {
   headers: string[];
   lines: string[][];
   onCustomClick?: (num: number) => void;
-  borderBottomColor?: "table__border_black" | "table__border_gray";
-  lineHeight?: "table__height_low" | "table__height_high" | "table__height_veryhigh";
-  fontWeight?: "table__weight_normal" | "table__weight_bold";
+  borderBottomColor?: "table_border_black" | "table_border_gray";
+  lineHeight?: "table_height_low" | "table_height_high" | "table_height_veryhigh";
+  fontWeight?: "table_weight_normal" | "table_weight_bold";
 }
 
 export enum IndexsConsts {
@@ -24,9 +24,9 @@ export default function Table({
   headers = [],
   lines = [],
   onCustomClick,
-  borderBottomColor = "table__border_black",
-  lineHeight = "table__height_high",
-  fontWeight = "table__weight_normal",
+  borderBottomColor = "table_border_black",
+  lineHeight = "table_height_high",
+  fontWeight = "table_weight_normal",
 }: TableProps) {
   function isAdaptive(tableType: TableTypes, index: number) {
     switch (tableType) {
