@@ -32,7 +32,7 @@ function App() {
     setIds(idsStr.slice(1));
     const newArr: Array<Crypt> = [];
 
-    freshCrypts.getFreshDataAboutWallet.forEach(
+    freshCrypts?.getFreshDataAboutWallet.forEach(
       (itemFromFetch: CryptFromFetch) => {
         dataFromStorage.forEach((itemFromStorage: Crypt) => {
           if (itemFromFetch.id === itemFromStorage.id) {

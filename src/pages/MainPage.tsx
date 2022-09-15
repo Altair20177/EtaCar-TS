@@ -35,7 +35,7 @@ export default function MainPage() {
   }, [currentPage]);
 
   function nextPage() {
-    currentPage !== Math.ceil(pagesAmount.getPagesAmount / 10) &&
+    currentPage !== Math.ceil(pagesAmount?.getPagesAmount / 10) &&
       setCurrentPage(+currentPage + 1);
   }
 
@@ -51,10 +51,48 @@ export default function MainPage() {
   return (
     <main className="content main">
       <h2 className="title">All Cryptocurrency</h2>
-      <TableMain
-        dataToShow={allCrypts?.getAllCrypts || []}
-        pageWidth={pageWidth}
-      />
+      {!loading && allCrypts?.getAllCrypts.length ? (
+        <TableMain dataToShow={allCrypts?.getAllCrypts} />
+      ) : (
+        <div className="skeleton__table">
+          <div className="crypts-header">
+            <p className="rank crypts-header__item">Rank</p>
+            <p className="name crypts-header__item adaptive">Name</p>
+            <p className="symbol crypts-header__item">Symbol</p>
+            <p className="price crypts-header__item">Price</p>
+            <p className="change crypts-header__item">Change (24h)</p>
+            <p className="add crypts-header__item">Add to Wallet</p>
+          </div>
+          {[...Array(10).keys()].map((line) => (
+            <div className="crypts__line" key={line}>
+              <Skeleton className="skeleton" width={20} height={20} />
+              {pageWidth > 640 && (
+                <Skeleton className="skeleton" width={170} height={20} />
+              )}
+              <Skeleton
+                className="skeleton"
+                width={pageWidth > 640 ? 50 : 30}
+                height={20}
+              />
+              <Skeleton
+                className="skeleton"
+                width={pageWidth > 640 ? 150 : 100}
+                height={20}
+              />
+              <Skeleton
+                className="skeleton"
+                width={pageWidth > 640 ? 110 : 60}
+                height={20}
+              />
+              <Skeleton
+                className="skeleton"
+                width={pageWidth > 640 ? 72 : 52}
+                height={pageWidth > 640 ? 44 : 34}
+              />
+            </div>
+          ))}
+        </div>
+      )}
 
       {!pagesLoading ? (
         <section className="pagination">
@@ -66,22 +104,22 @@ export default function MainPage() {
           >
             Prev
           </Button>
-          {[...Array(Math.ceil(pagesAmount.getPagesAmount / 10)).keys()].map(
-            (page: number) => {
-              return (
-                <Button
-                  type="button"
-                  key={page}
-                  size={ButtonSizes.size_sm}
-                  buttonType={ButtonTypes.button_pagination}
-                  onClick={(e) => changePage(e)}
-                  active={page + 1 === currentPage}
-                >
-                  {page + 1}
-                </Button>
-              );
-            }
-          )}
+          {[
+            ...Array(Math.ceil(pagesAmount?.getPagesAmount / 10) || 10).keys(),
+          ].map((page: number) => {
+            return (
+              <Button
+                type="button"
+                key={page}
+                size={ButtonSizes.size_sm}
+                buttonType={ButtonTypes.button_pagination}
+                onClick={(e) => changePage(e)}
+                active={page + 1 === currentPage}
+              >
+                {page + 1}
+              </Button>
+            );
+          })}
           <div className="current__page">{currentPage}</div>
           <Button
             type="button"

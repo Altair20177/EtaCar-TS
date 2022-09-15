@@ -97,7 +97,7 @@ export default function AddCryptModal({
         </p>
         <form action="submit" onSubmit={(e) => e.preventDefault()}>
           <input
-            className={`modal__input ${error ? "error" : ""}`}
+            className={`modal__input modal__input_crypt ${error ? "error" : ""}`}
             type="text"
             value={amount}
             onChange={(e) => onChange(e)}

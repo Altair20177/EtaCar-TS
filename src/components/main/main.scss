@@ -81,8 +81,13 @@
 .skeleton {
     margin: 3px 0;
 
-    &-pagination{
+    &-pagination {
         margin-left: 10px;
+    }
+
+    &__table {
+        margin: 50px auto;
+        width: 85%;
     }
 }
 

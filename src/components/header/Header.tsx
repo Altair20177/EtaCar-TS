@@ -22,12 +22,7 @@ export default function Header() {
     },
   });
 
-  useEffect(() => {
-    !loading && setTopCrypts(data.getAllCrypts);
-  }, [data, loading]);
-
   const [isWalletOpen, setIsWalletOpen] = useState<boolean>(false);
-  const [topCrypts, setTopCrypts] = useState<CryptFromFetch[]>([]);
 
   function walletPrice() {
     if (walletData) {
@@ -61,20 +56,24 @@ export default function Header() {
             <li
               className="crypto__item"
               key={index}
-              onClick={() => navigate(`/${topCrypts[index].id}`)}
+              onClick={() => navigate(`/${data?.getAllCrypts[index].id}`)}
             >
-              {topCrypts.length ? (
+              {!loading && data?.getAllCrypts.length ? (
                 <>
-                  <span className="crypto__name">{topCrypts[index]?.name}</span>{" "}
+                  <span className="crypto__name">
+                    {data?.getAllCrypts[index]?.name}
+                  </span>{" "}
                   -{" "}
                   <span
                     className={`crypto__price ${
-                      topCrypts[index]?.changePercent24Hr < 0
+                      data?.getAllCrypts[index]?.changePercent24Hr < 0
                         ? "crypto__price_low"
                         : ""
                     }`}
                   >
-                    {Math.floor(+topCrypts[index]?.priceUsd * 100) / 100}$
+                    {Math.floor(+data?.getAllCrypts[index]?.priceUsd * 100) /
+                      100}
+                    $
                   </span>
                 </>
               ) : (
